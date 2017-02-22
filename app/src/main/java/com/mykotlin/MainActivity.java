@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mykotlin.ben.KotlinTest2;
+import com.mykotlin.test.TestAiYi;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,10 +19,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.sendKotlin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,Main2Activity.class));
+//                startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                TestAiYi.getData2();
             }
         });
-        ( (TextView)findViewById(R.id.sendKotlin)).setText(""+new KotlinTest2().tt);
+        ((TextView) findViewById(R.id.sendKotlin)).setText("" + new KotlinTest2().tt);
 
     }
 }
