@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -49,16 +50,16 @@ public class TestAiYi {
                 .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         return retrofit.create(service);
     }
 
     private static void getData() {
         NewsApi api = createByXML("https://www.iyibank.com/", NewsApi.class);
-        api.getNewsData()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        api.getNewsData("cibalipay", "1.0", "MD5", "1791")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<XMLService>() {
                     @Override
                     public void onCompleted() {

@@ -42,6 +42,7 @@ dependencies {
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
     }
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
 }
 repositories {
     mavenCentral()

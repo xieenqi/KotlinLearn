@@ -1,9 +1,10 @@
 package com.mykotlin.test;
 
-import retrofit2.http.GET;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 import rx.Observable;
+
+
 /**
  * Created by xeq on 17/2/22.
  */
@@ -11,6 +12,6 @@ import rx.Observable;
 public interface NewsApi {
 
     @POST("pay/gateway")
-    Observable getNewsData();
+    Observable<XMLService> getNewsData(@Body String server, @Body String version, @Body String sign_type, @Body String mch_id);
 
 }
