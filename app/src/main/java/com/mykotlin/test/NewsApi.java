@@ -1,11 +1,12 @@
 package com.mykotlin.test;
 
-import java.util.HashMap;
+import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -17,10 +18,15 @@ import rx.Observable;
 
 public interface NewsApi {
 
+    @Headers({
+            "Accept: application/vnd.github.v3.full+json",
+            "User-Agent: Retrofit-Sample-App"
+    })
+    @FormUrlEncoded
     @POST("pay/gateway")
-    Call<XMLService> getNewsData(@Body HashMap<String, Object> body, Callback<XMLService> cb);
+    Observable<XMLService> postNewsData(@FieldMap Map<String, Object> fieldMap);
 
-//    service:cibalipay
+    //    service:cibalipay
 //    mch_id:1791
 //    Key:7378bbb54c3d4de0927bbf4eee769560
     @GET("pay/orderquery")

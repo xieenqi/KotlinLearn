@@ -29,6 +29,13 @@ import static android.content.ContentValues.TAG;
  */
 
 public class TestAiYi {
+
+    static NewsApi newsApi = new Retrofit.Builder().baseUrl("https://www.iyibank.com/")
+            .addConverterFactory(SimpleXmlConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .build()
+            .create(NewsApi.class);
+
     //请求 url:https://www.iyibank.com/pay/gateway
     public static void main(String[] args) {
         System.out.println("5678----------------------------90-=");
@@ -72,6 +79,7 @@ public class TestAiYi {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(new OkHttpClient())
                 .addConverterFactory(SimpleXmlConverterFactory.create())
 //                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
@@ -84,56 +92,50 @@ public class TestAiYi {
         map.put("version", "1.0");
         map.put("sign_type", "MD5");
         map.put("mch_id", "1791");
-//        map.put("server", "cibalipay");
-//        map.put("server", "cibalipay");
-//        "cibalipay", "1.0", "MD5", "1791",
-        NewsApi api = createByXML("https://www.iyibank.com/", NewsApi.class);
-        api.getNewsData(map, new Callback<XMLService>() {
+        map.put("out_trade_no", "订单编号1");
+        map.put("body", "商品描述---");
+        map.put("total_fee", 100.0);
+        map.put("mch_create_ip", "1611");
+        map.put("notify_url", "http://wap.tenpay.com/t enpay.asp");
+        map.put("nonce_str", "随机字符串,不长于 32 位");
+//        map.put("sign","");
+
+
+        newsApi.postNewsData(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(new Func1<XMLService, Observable<String>>() {
+                    @Override
+                    protected void finalize() throws Throwable {
+                        super.finalize();
+                        System.out.println("请求post出错---》onError  ");
+                    }
+
+                    @Override
+                    public Observable<String> call(XMLService xmlService) {
+                        System.out.println(xmlService + "post请求成功下一步->message " + xmlService.message
+                                + "  status-->" + xmlService.status);
+                        return Observable.from(new String[]{xmlService.message});
+                    }
+                }).subscribe(new Subscriber<String>() {
             @Override
-            public void onResponse(Call<XMLService> call, retrofit2.Response<XMLService> response) {
-                System.out.println("请求cg成功下一步---》 " + response.isSuccessful());
+            public void onCompleted() {
+
             }
 
             @Override
-            public void onFailure(Call<XMLService> call, Throwable t) {
-                System.out.println("请求出错---》onError  " + t.getMessage());
+            public void onError(Throwable e) {
+                System.out.println("请求post出错---》" + e.toString());
+            }
+
+            @Override
+            public void onNext(String s) {
+                System.out.println("请求post  onNext》" + s.toString());
             }
         });
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Subscriber<XMLService>() {
-//                    @Override
-//                    public void onCompleted() {
-//                        System.out.println("请求完成---》onCompleted");
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        System.out.println("请求出错---》onError  " + e.toString());
-//                    }
-//
-//                    @Override
-//                    public void onNext(XMLService xmlService) {
-//                        System.out.println("请求cg成功下一步---》onNext ");
-//                    }
-//                });
-
-
     }
 
     public static void getData2() {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("server", "cibalipay");
-        map.put("version", "1.0");
-        map.put("sign_type", "MD5");
-        map.put("mch_id", "1791");
-        NewsApi newsApi = new Retrofit.Builder().baseUrl("https://www.iyibank.com/")
-                .addConverterFactory(SimpleXmlConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build()
-                .create(NewsApi.class);
-
-
         newsApi.getNewsData("cibalipay", "1791", "7378bbb54c3d4de0927bbf4eee769560")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -147,7 +149,7 @@ public class TestAiYi {
                     @Override
                     public Observable<String> call(XMLService xmlService) {
                         System.out.println("请求成功下一步->message " + xmlService.message
-                       +"  status-->"+xmlService.status );
+                                + "  status-->" + xmlService.status);
                         return Observable.from(new String[]{xmlService.message});
                     }
                 }).subscribe(new Subscriber<String>() {
@@ -163,30 +165,11 @@ public class TestAiYi {
 
             @Override
             public void onNext(String s) {
-                System.out.println("请求成功下一步---》 onNext" );
+                System.out.println("请求成功下一步---》 onNext");
             }
         });
     }
 }
-//    .flatMap(new Func1<NewsDataXml, Observable<NewsXml>>() {
-//
-//        @Override
-//
-//        public Observable<NewsXml> call(NewsDataXml newsDataXml) {
-//
-//            return Observable.from(newsDataXml.newsXmls);
-//
-//        }
-//
-//    }).subscribe(new Subscriber<NewsXml>() {
-//
-//        @Override
-//
-//        public void onCompleted() {
-//
-//            Log.v("xmlidea", "onCompleted");
-//
-//        }
 
 
 

@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                startActivity(new Intent(MainActivity.this, Main2Activity.class));
-                TestAiYi.getData2();
+                TestAiYi.getData();
             }
         });
         ((TextView) findViewById(R.id.sendKotlin)).setText("" + new KotlinTest2().tt);
