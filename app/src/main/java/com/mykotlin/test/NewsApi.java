@@ -18,10 +18,10 @@ import rx.Observable;
 
 public interface NewsApi {
 
-    @Headers({
-            "Accept: application/vnd.github.v3.full+json",
-            "User-Agent: Retrofit-Sample-App"
-    })
+//    @Headers({
+//            "Accept: application/vnd.github.v3.full+json",
+//            "User-Agent: Retrofit-Sample-App"
+//    })
     @FormUrlEncoded
     @POST("pay/gateway")
     Observable<XMLService> postNewsData(@FieldMap Map<String, Object> fieldMap);
