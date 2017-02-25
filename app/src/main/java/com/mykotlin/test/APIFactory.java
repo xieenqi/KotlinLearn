@@ -5,6 +5,14 @@ package com.mykotlin.test;
  */
 
 public class APIFactory {
+    private APIFactory() {
+    }
 
+    private static class Holder {
+        private static APIFactory instance = new APIFactory();
+    }
 
+    public APIFactory getInstance() {
+        return Holder.instance;
+    }
 }
