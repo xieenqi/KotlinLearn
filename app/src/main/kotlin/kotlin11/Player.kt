@@ -10,7 +10,7 @@ class Player {
 
     //Delegates.observable 捕获State的成员状态 传给后面的lamda 函数
     private var state: State by Delegates.observable(State.IDLE, { pro, olde, new ->
-        println("$olde -> $new")
+        println("前一个状态:$olde  后一个状态:$new")
         onPlayStateChangeListenter?.onStateChange(olde, new)//?. 表示必定不为空 (安全调用方法)
     })
 

@@ -15,4 +15,7 @@ public class APIFactory {
     public APIFactory getInstance() {
         return Holder.instance;
     }
+
+    private void getRetrofit() {
+    }
 }

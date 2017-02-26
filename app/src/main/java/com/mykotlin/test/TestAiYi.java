@@ -22,7 +22,6 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by xeq on 17/2/22.
@@ -32,6 +31,7 @@ public class TestAiYi {
 
     static NewsApi newsApi = new Retrofit.Builder().baseUrl("https://www.iyibank.com/")
             .addConverterFactory(SimpleXmlConverterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
             .create(NewsApi.class);
