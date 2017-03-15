@@ -9,12 +9,19 @@
 package com.library.quickkv;
 
 import android.content.Context;
+
 import com.library.quickkv.database.HCKeyValueDatabase;
 import com.library.quickkv.database.KeyValueDatabase;
 import com.library.quickkv.util.StorageManager;
 
 import java.util.HashMap;
 
+/**
+ * https://github.com/SumiMakito/QuickKV
+ * asm-3.3.1.jar
+ * json-smart-2.0.RC3.jar
+ * MaglevIO_Snapshot_master_Build.26.jar
+ */
 public class QuickKV {
     private Context pContext;
     private HashMap<String, KeyValueDatabase> sKVDB;
@@ -26,11 +33,11 @@ public class QuickKV {
         this.storageManager = new StorageManager(pContext);
     }
 
-    public void setWorkspace(String fPath){
+    public void setWorkspace(String fPath) {
         this.storageManager.setWorkspace(fPath);
     }
 
-    public StorageManager getStorageManager(){
+    public StorageManager getStorageManager() {
         return this.storageManager;
     }
 
@@ -125,7 +132,7 @@ public class QuickKV {
         return this.sKVDB.get(dbAlias);
     }
 
-    public HCKeyValueDatabase getHCKVDB(String pDBName){
+    public HCKeyValueDatabase getHCKVDB(String pDBName) {
         return new HCKeyValueDatabase(this, pDBName);
     }
 
