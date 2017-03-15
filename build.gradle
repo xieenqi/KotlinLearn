@@ -3,6 +3,7 @@ buildscript {
     ext.kotlin_version = '1.0.5-2'
     repositories {
         jcenter()
+//        maven { url "https://jitpack.io" }//kv 数据库依赖
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
