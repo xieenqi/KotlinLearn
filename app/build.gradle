@@ -47,6 +47,10 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
 //    compile 'com.squareup.retrofit2:converter-gson'
     compile project(path: ':library')
+    // Stetho core
+    compile 'com.facebook.stetho:stetho:1.3.1'
+    //If you want to add a network helper
+    compile 'com.facebook.stetho:stetho-okhttp3:1.3.1'
 }
 repositories {
     mavenCentral()

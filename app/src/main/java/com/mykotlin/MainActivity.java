@@ -2,15 +2,27 @@ package com.mykotlin;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.library.quickkv.QuickKV;
 import com.library.quickkv.database.KeyValueDatabase;
 import com.mykotlin.ben.KotlinTest2;
 import com.mykotlin.test.TestAiYi;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static com.facebook.stetho.inspector.protocol.module.Console.MessageSource.NETWORK;
 
 public class MainActivity extends Activity {
     private QuickKV quickKv;
@@ -41,7 +53,7 @@ public class MainActivity extends Activity {
 
                 KeyValueDatabase pkvdb1 = quickKv.getDatabase("Foo");
                 for (int i = 0; i < index; i++) {
-                    pkvdb1.put("Key" + i, "Value" + i);
+                    pkvdb1.put("Key我" + i, "Value123" + i);
                 }
 
                 pkvdb1.persist();
@@ -67,8 +79,33 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this, pkvdb2.size() + "--读取耗时" + (endTime2 - startTime2) + "ms", Toast.LENGTH_LONG).show();
                 //Output: "Value"
                 //输出: "Value"
+                Log.d("tag", "数据库路径: " + quickKv.getStorageManager().getWorkspace().getParent());
             }
         });
 
+    }
+
+    //网络拦截
+    private void getFromNetwork() {
+        OkHttpClient client = new OkHttpClient();
+        //下面这句话显得尤为重要，加入后才能拦截到http请求。
+        client.networkInterceptors().add(new StethoInterceptor());
+        //构建请求
+        Request request = new Request.Builder()
+                .url("http://www.baidu.com")
+                .build();
+        Response response = null;
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+            }
+        });
     }
 }
