@@ -1,6 +1,7 @@
 package com.mykotlin;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static android.R.attr.configChanges;
 import static com.facebook.stetho.inspector.protocol.module.Console.MessageSource.NETWORK;
 
 public class MainActivity extends Activity {
@@ -108,4 +110,42 @@ public class MainActivity extends Activity {
             }
         });
     }
+
+    //    <!--android:configChanges="orientation|screenSize"  activity 配置了 横竖屏切换 就不会销毁页面 只会执行onConfigurationChanged-->
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d("log", "onConfigurationChanged()");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("log", "onStart()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("log", "onResume()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("log", "onPause()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("log", "onStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("log", "onDestroy()");
+    }
+
 }
