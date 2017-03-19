@@ -84,6 +84,10 @@ public class MainActivity extends Activity {
                 Log.d("tag", "数据库路径: " + quickKv.getStorageManager().getWorkspace().getParent());
             }
         });
+        findViewById(android.R.id.content).setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 
     }
 
