@@ -1,6 +1,7 @@
 package com.mykotlin;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,10 +27,11 @@ import okhttp3.Response;
 import static android.R.attr.configChanges;
 import static com.facebook.stetho.inspector.protocol.module.Console.MessageSource.NETWORK;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
+    private Button bt03;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +86,12 @@ public class MainActivity extends Activity {
                 Log.d("tag", "数据库路径: " + quickKv.getStorageManager().getWorkspace().getParent());
             }
         });
-        findViewById(android.R.id.content).setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-
+//        findViewById(android.R.id.content).setSystemUiVisibility(
+//                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        bt03 = (Button) findViewById(R.id.bt03);
+        bt03.setOnClickListener(this);
     }
 
     //网络拦截
@@ -152,4 +155,12 @@ public class MainActivity extends Activity {
         Log.d("log", "onDestroy()");
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bt03:
+                startActivity(new Intent(MainActivity.this, SpringAnimationActivity.class));
+                break;
+        }
+    }
 }
