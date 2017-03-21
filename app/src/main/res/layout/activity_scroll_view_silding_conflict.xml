@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mykotlin.ScrollViewSildingConflictActivity">
+    tools:context="com.mykotlin.conflict.ScrollViewSildingConflictActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,9 +26,13 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="80dp" />
+                android:layout_height="80dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="这是一段文字 " />
 
             <ListView
+                android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

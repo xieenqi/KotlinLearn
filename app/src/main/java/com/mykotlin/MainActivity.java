@@ -14,6 +14,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.library.quickkv.QuickKV;
 import com.library.quickkv.database.KeyValueDatabase;
 import com.mykotlin.ben.KotlinTest2;
+import com.mykotlin.conflict.ScrollViewSildingConflictActivity;
 import com.mykotlin.test.TestAiYi;
 
 import java.io.IOException;
@@ -23,9 +24,6 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static android.R.attr.configChanges;
-import static com.facebook.stetho.inspector.protocol.module.Console.MessageSource.NETWORK;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
