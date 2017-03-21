@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
-    private Button bt03;
+    private Button bt03, bt04;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +92,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         bt03 = (Button) findViewById(R.id.bt03);
         bt03.setOnClickListener(this);
+        bt04 = (Button) findViewById(R.id.bt04);
+        bt04.setOnClickListener(this);
     }
 
     //网络拦截
@@ -161,6 +163,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.bt03:
                 startActivity(new Intent(MainActivity.this, SpringAnimationActivity.class));
                 break;
+            case R.id.bt04:
+                startActivity(new Intent(MainActivity.this, ScrollViewSildingConflictActivity.class));
+                break;
+
         }
     }
 }

@@ -27,7 +27,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2Activity" />
-        <activity android:name=".SpringAnimationActivity"></activity>
+        <activity android:name=".SpringAnimationActivity" />
+        <activity android:name=".ScrollViewSildingConflictActivity"></activity>
     </application>
 
 </manifest>
