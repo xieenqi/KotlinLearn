@@ -23,4 +23,33 @@
         android:layout_centerInParent="true"
         android:background="@color/colorAccent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="刚性程度"
+            android:textSize="10sp" />
+
+        <SeekBar
+            android:id="@+id/Stiffne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="阻尼效果"
+            android:textSize="10sp" />
+
+        <SeekBar
+            android:id="@+id/Damping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
 </RelativeLayout>
