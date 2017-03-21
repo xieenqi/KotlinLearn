@@ -29,7 +29,7 @@ class SpringAnimationActivity : AppCompatActivity(), View.OnTouchListener {
     override fun onTouch(view: View?, event: MotionEvent?): Boolean {
         when (event!!.action) {
             MotionEvent.ACTION_DOWN -> {
-                Toast.makeText(this, "按到", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "按到", Toast.LENGTH_SHORT).show()
                 downX = event.x
                 downY = event.y
                 velocityTracker!!.addMovement(event)
