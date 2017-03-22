@@ -3,6 +3,7 @@ package com.mykotlin.conflict
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import com.mykotlin.R
@@ -14,7 +15,9 @@ import java.util.*
 * */
 class ScrollViewSildingConflictActivity : AppCompatActivity() {
 
-    private var mLastX = 0.0f;
+    private var mLastX = 0.0f
+    private var mListLastY = 0.0f
+    private var isScrollBottom: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +58,7 @@ class ScrollViewSildingConflictActivity : AppCompatActivity() {
             Handler().postDelayed({ refresh.setRefreshing(false) }, 4000)
         }
         /*解决viewPager 与 刷新空间之间的冲突 */
-        pager.setOnTouchListener(View.OnTouchListener() { view: View, motionEvent: MotionEvent ->
+        pager.setOnTouchListener({ view: View, motionEvent: MotionEvent ->
             when (motionEvent!!.action) {
                 MotionEvent.ACTION_DOWN -> {
                     // 记录点击到ViewPager时候，手指的X坐标
@@ -65,7 +68,7 @@ class ScrollViewSildingConflictActivity : AppCompatActivity() {
                     //超过设定发值
                     if (Math.abs(motionEvent.x - mLastX) > 60f) {
                         refresh.setEnabled(false)
-                        scroll.requestDisallowInterceptTouchEvent(true)//要求禁止拦截触摸事件
+                        scroll.requestDisallowInterceptTouchEvent(true)//要求 禁止拦截触摸事件
                     }
                 }
                 MotionEvent.ACTION_UP -> {
@@ -75,6 +78,48 @@ class ScrollViewSildingConflictActivity : AppCompatActivity() {
             }
             false
         })
+        scroll.setListener(object : ScrollBottomView.onScrollListener {
+            override fun onScrollTop() {
+                isScrollBottom = false;
+            }
+
+            override fun onScrollMiddle() {
+                isScrollBottom = false
+            }
+
+            override fun onScrollBottom() {
+                isScrollBottom = true
+            }
+
+        })
+        list.setOnTouchListener { view, motionEvent ->
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    /*记录 触摸list的y的位置点*/
+                    mListLastY = motionEvent.y
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    /* list 顶部位置 */
+                    var listTop = list.getChildAt(0).top
+                    //当前位置
+                    var listNowY = motionEvent.y
+                    Log.d("log", "list滚动位置-> " + listTop)
+                    /* scrollView 没有滑动到底部 不拦截触摸事件*/
+                    if (!isScrollBottom) {
+                        scroll.requestDisallowInterceptTouchEvent(false)
+                    } else if (listTop == 0 && listNowY - mListLastY > 20F) {
+                        scroll.requestDisallowInterceptTouchEvent(false)
+                    } else {
+                        scroll.requestDisallowInterceptTouchEvent(true)
+                    }
+                }
+                MotionEvent.ACTION_UP -> {
+                    scroll.requestDisallowInterceptTouchEvent(true)
+                }
+
+            }
+            false
+        }
     }
 
 }

@@ -34,6 +34,16 @@ public class ScrollBottomView extends ScrollView {
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         Log.d("log", "l ->" + l + "  t -> " + t + " oldl -> " + oldl + " oldt->  " + oldt);
         super.onScrollChanged(l, t, oldl, oldt);
+        if (listener != null) {
+            //滑动的距离加上本身的高度 与 子view的高度
+            if (t + getHeight() >= getChildAt(0).getMeasuredHeight()) {
+                listener.onScrollBottom();
+            } else if (t <= 0) {
+                listener.onScrollTop();
+            } else {
+                listener.onScrollMiddle();
+            }
+        }
     }
 
     public void setListener(onScrollListener listener) {
@@ -48,6 +58,6 @@ public class ScrollBottomView extends ScrollView {
         void onScrollMiddle();
 
         /*滚动到 底部*/
-        void onScroolBottom();
+        void onScrollBottom();
     }
 }
