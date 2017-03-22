@@ -26,7 +26,7 @@ class ScrollViewSildingConflictActivity : AppCompatActivity() {
 
     fun getPagerData(): List<String> {
         var pageData = ArrayList<String>();
-        pageData.add("p656")
+        pageData.add("p656解决viewPager 与 刷新控件之间的冲突")
         pageData.add("pp656")
         pageData.add("ppp656")
         pageData.add("pppp656")
@@ -42,7 +42,7 @@ class ScrollViewSildingConflictActivity : AppCompatActivity() {
         refresh.setOnRefreshListener {
             Handler().postDelayed({ refresh.setRefreshing(false) }, 4000)
         }
-        /*解决viewPager 与 刷新空间之间的冲突 */
+        /*解决viewPager 与 刷新控件之间的冲突 */
         pager.setOnTouchListener(View.OnTouchListener() { view: View, motionEvent: MotionEvent ->
             when (motionEvent!!.action) {
                 MotionEvent.ACTION_DOWN -> {
