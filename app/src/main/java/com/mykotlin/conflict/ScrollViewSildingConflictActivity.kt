@@ -6,6 +6,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import com.baidu.mapapi.SDKInitializer
 import com.mykotlin.R
 import kotlinx.android.synthetic.main.activity_scroll_view_silding_conflict.*
 import java.util.*
@@ -17,10 +18,14 @@ class ScrollViewSildingConflictActivity : AppCompatActivity() {
 
     private var mLastX = 0.0f
     private var mListLastY = 0.0f
+    private var mMapLastY = 0.0f
     private var isScrollBottom: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //在使用SDK各组件之前初始化context信息，传入ApplicationContext
+        //注意该方法要再setContentView方法之前实现
+        SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_scroll_view_silding_conflict)
         var pagerAdapter = ViewPageAdapter(this, getPagerData())
         pager.setAdapter(pagerAdapter)
@@ -92,6 +97,28 @@ class ScrollViewSildingConflictActivity : AppCompatActivity() {
             }
 
         })
+        /* 触摸地图 拦截scrollview 的事件 反之不拦截 事件 */
+        bMapView.getChildAt(0).setOnTouchListener { view, motionEvent ->
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    scroll.requestDisallowInterceptTouchEvent(false)
+                    mMapLastY = motionEvent.y
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    var nowY = motionEvent.y
+                    if (Math.abs(mMapLastY - nowY) > bMapView.height * 2 / 5) {
+                        scroll.requestDisallowInterceptTouchEvent(false)
+                    } else {
+                        scroll.requestDisallowInterceptTouchEvent(true)
+                    }
+                }
+                MotionEvent.ACTION_UP -> {
+                    scroll.requestDisallowInterceptTouchEvent(true)
+                }
+            }
+            false
+        }
+
         list.setOnTouchListener { view, motionEvent ->
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -104,22 +131,40 @@ class ScrollViewSildingConflictActivity : AppCompatActivity() {
                     //当前位置
                     var listNowY = motionEvent.y
                     Log.d("log", "list滚动位置-> " + listTop)
-                    /* scrollView 没有滑动到底部 不拦截触摸事件*/
+                    /* scrollView 没有滑动到底部  拦截触摸事件*/
                     if (!isScrollBottom) {
                         scroll.requestDisallowInterceptTouchEvent(false)
+                        /*list滑动到顶部 并且 当前位置和开始触摸位置大于最大阈值  拦截触摸事件*/
                     } else if (listTop == 0 && listNowY - mListLastY > 20F) {
                         scroll.requestDisallowInterceptTouchEvent(false)
                     } else {
+                        //禁止拦截触摸事件
                         scroll.requestDisallowInterceptTouchEvent(true)
                     }
                 }
                 MotionEvent.ACTION_UP -> {
                     scroll.requestDisallowInterceptTouchEvent(true)
                 }
-
             }
             false
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
+        bMapView.onDestroy()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
+        bMapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
+        bMapView.onPause()
+    }
 }
