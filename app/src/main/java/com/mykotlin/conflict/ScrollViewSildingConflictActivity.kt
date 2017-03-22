@@ -21,17 +21,29 @@ class ScrollViewSildingConflictActivity : AppCompatActivity() {
         setContentView(R.layout.activity_scroll_view_silding_conflict)
         var pagerAdapter = ViewPageAdapter(this, getPagerData())
         pager.setAdapter(pagerAdapter)
+        list.setAdapter(ListAdapter(this, getListData()))
         sidingAction()
     }
 
     fun getPagerData(): List<String> {
-        var pageData = ArrayList<String>();
+        var pageData = ArrayList<String>()
         pageData.add("p656")
         pageData.add("pp656")
         pageData.add("ppp656")
         pageData.add("pppp656")
         pageData.add("ppppp656")
         return pageData;
+    }
+
+    fun getListData(): List<String> {
+        val lData = ArrayList<String>()
+        lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168")
+        lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168")
+        lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168")
+        lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168")
+        lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168");
+        lData.add("168");lData.add("168");lData.add("168");lData.add("168");lData.add("168");
+        return lData
     }
 
     /**
