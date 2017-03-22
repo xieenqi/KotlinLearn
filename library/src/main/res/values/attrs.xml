@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CollapsedTextView">
+        <!-- 折叠的行数-->
+        <attr name="collapsedLines" format="integer" />
+
+    </declare-styleable>
+
+</resources>
