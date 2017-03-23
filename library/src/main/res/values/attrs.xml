@@ -3,7 +3,25 @@
     <declare-styleable name="CollapsedTextView">
         <!-- 折叠的行数-->
         <attr name="collapsedLines" format="integer" />
-
+        <!-- 折叠的文字"展开"-->
+        <attr name="expandedText" format="string" />
+        <!--展开时的文本 "收起"-->
+        <attr name="collapsedText" format="string" />
+        <!-- 折叠时的图标 -->
+        <attr name="expandedDrawable" format="reference" />
+        <!-- 展开时的图标 -->
+        <attr name="collapsedDrawable" format="reference" />
+        <!-- 折叠 展开 图标放在那关位置 -->
+        <attr name="tipsGravity">
+            <flag name="end" value="0" />
+            <flag name="bottom" value="1" />
+        </attr>
+        <!-- 文字的颜色 (动作文字) -->
+        <attr name="tipsColor" format="reference|color" />
+        <!-- 文字是否加下滑线 (动作文字) -->
+        <attr name="tipsUnderline" format="boolean" />
+        <!-- 文字是否可以点击 (动作文字) -->
+        <attr name="tipsClickable" format="boolean" />
     </declare-styleable>
 
 </resources>
