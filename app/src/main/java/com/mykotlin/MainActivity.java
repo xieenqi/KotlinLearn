@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
-    private Button bt03, bt04;
+    private Button bt03, bt04, bt05;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +94,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bt03.setOnClickListener(this);
         bt04 = (Button) findViewById(R.id.bt04);
         bt04.setOnClickListener(this);
+        bt05 = (Button) findViewById(R.id.bt05);
+        bt05.setOnClickListener(this);
     }
 
     //网络拦截
@@ -137,18 +139,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         Log.d("log", "onResume()");
-        bt04.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return false;
-            }
-        });
-        new Handler().postAtTime(new Runnable() {
-            @Override
-            public void run() {
 
-            }
-        }, 1000);
     }
 
     @Override
@@ -177,6 +168,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.bt04:
                 startActivity(new Intent(MainActivity.this, ScrollViewSildingConflictActivity.class));
+                break;
+            case R.id.bt05:
+                startActivity(new Intent(MainActivity.this, CollapsedTextViewActivity.class));
                 break;
 
         }

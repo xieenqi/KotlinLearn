@@ -58,4 +58,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="scrollView滑动冲突" />
+
+    <Button
+        android:id="@+id/bt05"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="折叠的textview" />
 </LinearLayout>
