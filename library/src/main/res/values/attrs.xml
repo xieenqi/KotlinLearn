@@ -23,5 +23,4 @@
         <!-- 文字是否可以点击 (动作文字) -->
         <attr name="tipsClickable" format="boolean" />
     </declare-styleable>
-
 </resources>

@@ -38,13 +38,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         quickKv = new QuickKV(MainActivity.this);
-        findViewById(R.id.sendKotlin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, Main2Activity.class));
-                TestAiYi.getData();
-            }
-        });
+//        findViewById(R.id.sendKotlin).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                startActivity(new Intent(MainActivity.this, Main2Activity.class));
+//                TestAiYi.getData();
+//            }
+//        });
         ((TextView) findViewById(R.id.sendKotlin)).setText("" + new KotlinTest2().tt);
         final Button bt1 = (Button) findViewById(R.id.bt01);
         Button bt2 = (Button) findViewById(R.id.bt02);

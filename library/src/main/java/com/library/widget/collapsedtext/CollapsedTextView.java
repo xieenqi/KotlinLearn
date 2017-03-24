@@ -3,7 +3,6 @@ package com.library.widget.collapsedtext;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
@@ -89,11 +88,13 @@ RUNTIME表示在源码，编译后的.class都保存信息，在执行的时候�
     }
 
     public CollapsedTextView(Context context) {
-        super(context);
+        this(context, null);//注意要调用起来(用不同的构造函数可以调用起来)
+//        super(context);
     }
 
     public CollapsedTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+//        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public CollapsedTextView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -232,7 +233,7 @@ RUNTIME表示在源码，编译后的.class都保存信息，在执行的时候�
             // 获取TextView中文字显示的宽度，需要在layout之后才能获取到，避免重复获取
             if (mCollapsedLines > 0 && mShowWidth == 0) {
                 getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)//API控制16
+                    //                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)//API控制16
                     @Override
                     public void onGlobalLayout() {
                         getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -244,6 +245,7 @@ RUNTIME表示在源码，编译后的.class都保存信息，在执行的时候�
                 formatCollapsedText(type);
             }
         }
+        super.setText(text, type);//原著 的bug 必须要这句 设置文本无效
     }
 
     /**
