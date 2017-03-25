@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
-    private Button bt03, bt04, bt05;
+    private Button bt03, bt04, bt05, bt06;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +96,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bt04.setOnClickListener(this);
         bt05 = (Button) findViewById(R.id.bt05);
         bt05.setOnClickListener(this);
+        bt06 = (Button) findViewById(R.id.bt06);
+        bt06.setOnClickListener(this);
     }
 
     //网络拦截
@@ -171,6 +173,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.bt05:
                 startActivity(new Intent(MainActivity.this, CollapsedTextViewActivity.class));
+                break;
+            case R.id.bt06:
+                startActivity(new Intent(MainActivity.this, ClearEditTextActivity.class));
                 break;
 
         }

@@ -1,4 +1,4 @@
-package com.library.widget;
+package com.library.widget.clearedittext;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;

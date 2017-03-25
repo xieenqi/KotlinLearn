@@ -17,10 +17,10 @@ class CollapsedTextViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collapsed_text_view)
-        text1.text=tt
+        text1.text = tt
         text2.setText(tt)
         text3.setText(tt)
         text4.setText(tt)
-//        text5.setText(tt)
+        text5.setText(tt)
     }
 }

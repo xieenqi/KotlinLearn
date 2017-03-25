@@ -5,7 +5,6 @@
     android:id="@+id/activity_collapsed_text_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -54,25 +53,15 @@
             android:text="修改位置"
             app:tipsGravity="bottom" />
 
-        <!--<com.library.widget.collapsedtext.CollapsedTextView-->
-        <!--android:id="@+id/text5"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:background="@android:color/white"-->
-        <!--android:text="使用图片 !"-->
-        <!--app:collapsedDrawable="@drawable/arrow_up"-->
-        <!--app:expandedDrawable="@drawable/arrow_down" />-->
-
-        <com.library.widget.ClearEditText
+        <com.library.widget.collapsedtext.CollapsedTextView
+            android:id="@+id/text5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin" />
-
-        <com.library.widget.ClearEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin" />
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/white"
+            android:text="使用图片 !"
+            app:collapsedDrawable="@drawable/arrow_up"
+            app:expandedDrawable="@drawable/arrow_down" />
 
 
     </LinearLayout>
