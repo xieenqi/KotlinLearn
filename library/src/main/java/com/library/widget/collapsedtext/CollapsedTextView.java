@@ -325,7 +325,13 @@ RUNTIME表示在源码，编译后的.class都保存信息，在执行的时候�
      */
     private void formatExpandedText(BufferType type) {
         SpannableStringBuilder spannable = new SpannableStringBuilder(mOriginalText);
+        spannable.append(mCollapsedText);
+// 设置点击事件
+        spannable.setSpan(mClickableSpan, spannable.length() - mCollapsedText.length(),
+                spannable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         setSpan(spannable);
+        // 使点击有效
+        setMovementMethod(LinkMovementMethod.getInstance());
         super.setText(spannable, type);
     }
 
