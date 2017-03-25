@@ -55,13 +55,25 @@
             app:tipsGravity="bottom" />
 
         <!--<com.library.widget.collapsedtext.CollapsedTextView-->
-            <!--android:id="@+id/text5"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:background="@android:color/white"-->
-            <!--android:text="使用图片 !"-->
-            <!--app:collapsedDrawable="@drawable/arrow_up"-->
-            <!--app:expandedDrawable="@drawable/arrow_down" />-->
+        <!--android:id="@+id/text5"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:background="@android:color/white"-->
+        <!--android:text="使用图片 !"-->
+        <!--app:collapsedDrawable="@drawable/arrow_up"-->
+        <!--app:expandedDrawable="@drawable/arrow_down" />-->
+
+        <com.library.widget.ClearEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin" />
+
+        <com.library.widget.ClearEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin" />
+
+
     </LinearLayout>
 </ScrollView>
