@@ -35,11 +35,11 @@ public class ClearEditText2 extends AppCompatEditText implements
 
     public ClearEditText2(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init(context);
+        init();
     }
 
 
-    private void init(Context context) {
+    private void init() {
         //获取EditText的DrawableRight,假如没有设置我们就使用默认的图片
         mClearDrawable = getCompoundDrawables()[2];
         if (mClearDrawable == null) {
@@ -84,6 +84,7 @@ public class ClearEditText2 extends AppCompatEditText implements
     public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
             setClearIconVisible(getText().length() > 0);
+            setShakeAnimation();//获取焦点启动晃动动画
         } else {
             setClearIconVisible(false);
         }
