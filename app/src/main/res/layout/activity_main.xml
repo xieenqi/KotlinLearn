@@ -70,4 +70,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="带一键删除的EditText" />
+
+    <Button
+        android:id="@+id/bt07"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="图标统计空间 折线图" />
 </LinearLayout>

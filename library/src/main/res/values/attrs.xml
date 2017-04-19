@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 折叠文本-->
     <declare-styleable name="CollapsedTextView">
         <!-- 折叠的行数-->
         <attr name="collapsedLines" format="integer" />
@@ -22,5 +23,15 @@
         <attr name="tipsUnderline" format="boolean" />
         <!-- 文字是否可以点击 (动作文字) -->
         <attr name="tipsClickable" format="boolean" />
+    </declare-styleable>
+
+    <!-- 图片统计控件 -->
+    <declare-styleable name="LineChartView">
+        <attr name="axesColor" format="color" /> <!--坐标轴颜色-->
+        <attr name="axesWidth" format="dimension" /><!--坐标轴宽度-->
+        <attr name="textColor" format="color" /> <!--x轴字体颜色-->
+        <attr name="textSize" format="dimension" /> <!--字体大小-->
+        <attr name="lineColor" format="color" /> <!--折线颜色-->
+        <attr name="bgColor" format="color" /> <!--背景色-->
     </declare-styleable>
 </resources>

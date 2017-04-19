@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.mykotlin">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -16,6 +17,9 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".App"
@@ -44,7 +48,8 @@
             android:value="FFFH3NNypViubXVW4nUhr3Gnzro5BVIG" />
 
         <activity android:name=".CollapsedTextViewActivity" />
-        <activity android:name=".ClearEditTextActivity"></activity>
+        <activity android:name=".ClearEditTextActivity" />
+        <activity android:name=".ChartActivity"></activity>
     </application>
 
 </manifest>

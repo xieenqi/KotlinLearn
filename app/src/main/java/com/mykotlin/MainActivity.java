@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
-    private Button bt03, bt04, bt05, bt06;
+    private Button bt03, bt04, bt05, bt06, bt07;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +98,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bt05.setOnClickListener(this);
         bt06 = (Button) findViewById(R.id.bt06);
         bt06.setOnClickListener(this);
+        bt07 = (Button) findViewById(R.id.bt07);
+        bt07.setOnClickListener(this);
     }
 
     //网络拦截
@@ -137,10 +139,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Log.d("log", "onStart()");
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
         Log.d("log", "onResume()");
+        int i1 = 1;
+        Integer i2 = 1;
+        Integer i3 = new Integer(1);
+        Log.d("log", "输出结果:" + (i1 == i2));
+        Log.d("log", "输出结果:" + (i1 == i3));
+        Log.d("log", "输出结果:" + (i2 == i3));
+
 
     }
 
@@ -176,6 +186,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.bt06:
                 startActivity(new Intent(MainActivity.this, ClearEditTextActivity.class));
+                break;
+            case R.id.bt07:
+                startActivity(new Intent(MainActivity.this, ChartActivity.class));
                 break;
 
         }
