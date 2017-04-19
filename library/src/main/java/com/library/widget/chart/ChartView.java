@@ -29,7 +29,7 @@ import java.util.Locale;
  * xnq 2017/3/14.
  */
 
-public class LineChartView extends View {
+public class ChartView extends View {
     private float xOrigin; //  x轴原点坐标
     private float yOrigin;  //  y轴原点坐标
     private int mMargin10;  //  10dp的间距
@@ -159,25 +159,25 @@ public class LineChartView extends View {
         mBgColor = bgColor;
     }
 
-    public LineChartView(Context context) {
+    public ChartView(Context context) {
         super(context);
         init();
     }
 
-    public LineChartView(Context context, AttributeSet attrs) {
+    public ChartView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
         init();
     }
 
-    public LineChartView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ChartView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LineChartView);
-        mAxesColor = typedArray.getColor(R.styleable.LineChartView_axesColor, Color.parseColor("#CCCCCC"));
-        mAxesWidth = typedArray.getDimension(R.styleable.LineChartView_axesWidth, 1);
-        mTextColor = typedArray.getColor(R.styleable.LineChartView_textColor, Color.parseColor("#ABABAB"));
-        mTextSize = typedArray.getDimension(R.styleable.LineChartView_textSize, 32);
-        mLineColor = typedArray.getColor(R.styleable.LineChartView_lineColor, Color.RED);
-        mBgColor = typedArray.getColor(R.styleable.LineChartView_bgColor, Color.WHITE);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ChartView);
+        mAxesColor = typedArray.getColor(R.styleable.ChartView_axesColor, Color.parseColor("#CCCCCC"));
+        mAxesWidth = typedArray.getDimension(R.styleable.ChartView_axesWidth, 1);
+        mTextColor = typedArray.getColor(R.styleable.ChartView_textColor, Color.parseColor("#ABABAB"));
+        mTextSize = typedArray.getDimension(R.styleable.ChartView_textSize, 32);
+        mLineColor = typedArray.getColor(R.styleable.ChartView_lineColor, Color.RED);
+        mBgColor = typedArray.getColor(R.styleable.ChartView_bgColor, Color.WHITE);
         typedArray.recycle();
 
         //  初始化渐变色
@@ -344,7 +344,7 @@ public class LineChartView extends View {
      * @param lineChartView
      * @param duration      动画持续时间
      */
-    public void startAnim(LineChartView lineChartView, long duration) {
+    public void startAnim(ChartView lineChartView, long duration) {
         ObjectAnimator anim = ObjectAnimator.ofFloat(lineChartView, "percentage", 0.0f, 1.0f);
         anim.setDuration(duration);
         anim.setInterpolator(new LinearInterpolator());

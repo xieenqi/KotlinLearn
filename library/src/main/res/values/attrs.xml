@@ -26,7 +26,7 @@
     </declare-styleable>
 
     <!-- 图片统计控件 -->
-    <declare-styleable name="LineChartView">
+    <declare-styleable name="ChartView">
         <attr name="axesColor" format="color" /> <!--坐标轴颜色-->
         <attr name="axesWidth" format="dimension" /><!--坐标轴宽度-->
         <attr name="textColor" format="color" /> <!--x轴字体颜色-->
