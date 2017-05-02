@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,7 +15,6 @@ import com.library.quickkv.QuickKV;
 import com.library.quickkv.database.KeyValueDatabase;
 import com.mykotlin.ben.KotlinTest2;
 import com.mykotlin.conflict.ScrollViewSildingConflictActivity;
-import com.mykotlin.test.TestAiYi;
 
 import java.io.IOException;
 

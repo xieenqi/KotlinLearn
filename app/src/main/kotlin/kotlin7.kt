@@ -1,4 +1,3 @@
-import rx.Observable
 import java.util.concurrent.Executors
 
 
@@ -15,19 +14,19 @@ fun main(vararg a: String) {
             "import android.media.SoundPool" +
             "import android.os.Environment;" +
             "import android.os.Handler;"
-    Observable.from(text.toCharArray().asIterable()).
-            filter { !it.isWhitespace() }//过滤空格
-            .groupBy { it }//分组
-            .map {
-                o ->
-                o.count().subscribe {
-                    println("${o.key} -> $it ")
-                }
-            }.subscribe()
-    val work=Executors.newWorkStealingPool()
-    work.execute{
-        println("hello")
-    }
+//    Observable.from(text.toCharArray().asIterable()).
+//            filter { !it.isWhitespace() }//过滤空格
+//            .groupBy { it }//分组
+//            .map {
+//                o ->
+//                o.count().subscribe {
+//                    println("${o.key} -> $it ")
+//                }
+//            }.subscribe()
+//    val work=Executors.newWorkStealingPool()
+//    work.execute{
+//        println("hello")
+//    }
 
 
 }
