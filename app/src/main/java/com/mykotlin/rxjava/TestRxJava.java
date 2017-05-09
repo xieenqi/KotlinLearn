@@ -13,6 +13,9 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -29,10 +32,11 @@ public class TestRxJava {
 
     public static void main(String[] args) {
         instance = new TestRxJava();
-        instance.testCreate();
+//        instance.testCreate();
 //        instance.testConsumer();
 
-        instance.testThread();
+//        instance.testThread();
+        instance.testFlowable();
     }
 
     Disposable disposable;
@@ -54,8 +58,9 @@ public class TestRxJava {
             //Disposable相当于RxJava1.x中的Subscription,用于解除订阅。
             @Override
             public void onSubscribe(Disposable d) {
-                System.out.println("是否订阅了相关内容   -> " + d.isDisposed());
+                System.out.println("是否 切断 被观察者和观察者的链接   -> " + d.isDisposed());
                 disposable = d;
+//                注意：当切断被观察者与观察者之间的联系，Observable(被观察者)的事件却仍在继续执行。
             }
 
             @Override
@@ -218,26 +223,63 @@ public class TestRxJava {
     }
 
     private void testThread() {
-        Observable.create(new ObservableOnSubscribe<Integer>() {
-
-            @Override
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                System.out.println("qian所在线程:-> " + Thread.currentThread());
-                System.out.println("qian发送的数据:" + 1 + "");
-                e.onNext(1);
-            }
-//            subscribeOn(): 指定Observable(被观察者)所在的线程，或者叫做事件产生的线程。
-// F* observeOn(): 指定 Observer(观察者)所运行在的线程，或者叫做事件消费的线程。
-        }).subscribeOn(Schedulers.io())
+//        ● Schedulers.immediate(): 直接在当前线程运行，相当于不指定线程。这是默认的 Scheduler。
+//
+//        ●Schedulers.newThread(): 总是启用新线程，并在新线程执行操作。
+//
+//        ●Schedulers.io(): I/O 操作（读写文件、读写数据库、网络信息交互等）所使用的 Scheduler。
+// 行为模式和 newThread() 差不多，区别在于 io() 的内部实现是用一个无数量上限的线程池，可以重用空闲的线程，
+// 因此多数情况下 io() 比 newThread() 更有效率。不要把计算工作放在 io() 中，可以避免创建不必要的线程。
+//
+//        ●Schedulers.computation(): 计算所使用的 Scheduler。这个计算指的是 CPU 密集型计算，
+// 即不会被 I/O 等操作限制性能的操作，例如图形的计算。这个 Scheduler 使用的固定的线程池，
+// 大小为 CPU 核数。不要把 I/O 操作放在 computation() 中，否则 I/O 操作的等待时间会浪费 CPU。
+//
+//        ● Android 还有一个专用的 AndroidSchedulers.mainThread()，它指定的操作将在 Android 主线程运行。
+//        Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+//                System.out.println("qian所在线程:-> " + Thread.currentThread());
+//                System.out.println("qian发送的数据:" + 1 + "");
+//                e.onNext(1);
+//            }
+////            subscribeOn(): 指定Observable(被观察者)所在的线程，或者叫做事件产生的线程。
+//// F* observeOn(): 指定 Observer(观察者)所运行在的线程，或者叫做事件消费的线程。
+//        }).subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Integer>() {
-                    @Override
-                    public void accept(Integer integer) throws Exception {
-                        System.out.println("hou-所在线程:-> " + Thread.currentThread());
-                        System.out.println("hou-发送的数据:" + "integer--" + integer);
-                    }
-                });
+//                .subscribe(new Consumer<Integer>() {
+//                    @Override
+//                    public void accept(Integer integer) throws Exception {
+//                        System.out.println("hou-所在线程:-> " + Thread.currentThread());
+//                        System.out.println("hou-发送的数据:" + "integer--" + integer);
+//                    }
+//                });
     }
 
+
+    private void testFlowable() {
+//        注意：处理Backpressure的策略仅仅是处理Subscriber接收事件的方式，并不影响Flowable发送事件的方法。
+//        即使采用了处理Backpressure的策略，Flowable原来以什么样的速度产生事件，现在还是什么样的速度不会变化，
+//        主要处理的是Subscriber接收事件的方式。
+//        Observable.create(new ObservableOnSubscribe<Object>() {
+//
+//            @Override
+//            public void subscribe(@NonNull ObservableEmitter<Object> e) throws Exception {
+//                while (true) {
+//                    e.onNext(1);
+//                }
+//            }
+//        })
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(Schedulers.computation())
+//                .subscribe(new Consumer<Object>() {
+//
+//                    @Override
+//                    public void accept(@NonNull Object o) throws Exception {
+//                        Thread.sleep(2000);
+//                        System.out.println("被压接受: " + o);
+//                    }
+//                });
+    }
 
 }
