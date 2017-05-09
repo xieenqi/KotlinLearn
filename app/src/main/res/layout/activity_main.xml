@@ -76,4 +76,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="图标统计控件 折线图" />
+
+    <Button
+        android:id="@+id/bt08"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RxJava背压测试" />
 </LinearLayout>

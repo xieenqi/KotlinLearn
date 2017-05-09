@@ -15,6 +15,7 @@ import com.library.quickkv.QuickKV;
 import com.library.quickkv.database.KeyValueDatabase;
 import com.mykotlin.ben.KotlinTest2;
 import com.mykotlin.conflict.ScrollViewSildingConflictActivity;
+import com.mykotlin.rxjava.TestRcjavaFlowableActivity;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -42,7 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
-    private Button bt03, bt04, bt05, bt06, bt07;
+    private Button bt03, bt04, bt05, bt06, bt07, bt08;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,96 +112,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bt06.setOnClickListener(this);
         bt07 = (Button) findViewById(R.id.bt07);
         bt07.setOnClickListener(this);
-
-
-
-        /*rxjava2 线程切换 演示*/
-        Observable.create(new ObservableOnSubscribe<Integer>() {
-            @Override
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                System.out.println("qian所在线程:-> " + Thread.currentThread());
-                System.out.println("qian发送的数据:" + 1 + "");
-                e.onNext(1);
-            }
-//            subscribeOn(): 指定Observable(被观察者)所在的线程，或者叫做事件产生的线程。
-// F* observeOn(): 指定 Observer(观察者)所运行在的线程，或者叫做事件消费的线程。
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Integer>() {
-                    @Override
-                    public void accept(Integer integer) throws Exception {
-                        System.out.println("hou-所在线程:-> " + Thread.currentThread());
-                        System.out.println("hou-发送的数据:" + "integer--" + integer);
-                    }
-                });
-        testFlowable();
+        bt08 = (Button) findViewById(R.id.bt08);
+        bt08.setOnClickListener(this);
     }
 
-    private void testFlowable() {
-//        Observable.create(new ObservableOnSubscribe<Object>() {
-//
-//            @Override
-//            public void subscribe(@NonNull ObservableEmitter<Object> e) throws Exception {
-//                while (true) {
-//                    e.onNext(1);
-//                }
-//            }
-//        })
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Consumer<Object>() {
-//
-//                    @Override
-//                    public void accept(@NonNull Object o) throws Exception {
-//                        Thread.sleep(2000);
-//                        System.out.println("被压接受: " + o);
-//                    }
-//                });
-
-        Flowable<Integer> flowable = Flowable.create(new FlowableOnSubscribe<Integer>() {
-            @Override
-            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
-                Log.d("log", "emit 1");
-                emitter.onNext(1);
-                Log.d("log", "emit 2");
-                emitter.onNext(2);
-                Log.d("log", "emit 3");
-                emitter.onNext(3);
-                Log.d("log", "emit complete");
-                emitter.onComplete();
-            }
-        }, BackpressureStrategy.ERROR); //增加了一个参数
-
-        Subscriber<Integer> subscriber = new Subscriber<Integer>() {
-            @Override
-            public void onSubscribe(Subscription s) {
-                Log.d("log", "onSubscribe");
-                s.request(1);//回传接受的
-//                这个方法就是用来向生产者申请可以消费的事件数量。这样我们便可以根据本身的消费能力进行消费事件。
-//                当调用了request()方法后，生产者便发送对应数量的事件供消费者消费。
-//                这是因为Flowable在设计的时候采用了一种新的思路也就是响应式拉取的方式,你要求多少，我便传给你多少。
-            }
-
-            @Override
-            public void onNext(Integer integer) {
-                Log.d("log", "onNext: " + integer);
-
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                Log.w("log", "onError: ", t);
-            }
-
-            @Override
-            public void onComplete() {
-                Log.d("log", "onComplete");
-            }
-        };
-        flowable.subscribeOn(Schedulers.io()).
-                observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
-    }
 
     //网络拦截
     private void getFromNetwork() {
@@ -289,6 +204,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.bt07:
                 startActivity(new Intent(MainActivity.this, ChartActivity.class));
+                break;
+            case R.id.bt08:
+                startActivity(new Intent(MainActivity.this, TestRcjavaFlowableActivity.class));
                 break;
 
         }
