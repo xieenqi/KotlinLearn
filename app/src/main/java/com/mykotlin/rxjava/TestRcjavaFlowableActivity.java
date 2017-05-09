@@ -3,6 +3,7 @@ package com.mykotlin.rxjava;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.mykotlin.R;
 
@@ -17,6 +18,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -28,11 +30,21 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TestRcjavaFlowableActivity extends AppCompatActivity {
 
+    Subscription mSubscription;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_rcjava_flowable);
-        testFlowable();
+
+        findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                testFlowable1();
+                mSubscription.request(50);
+            }
+        });
+        testFlowableError();
     }
 
     private void testTheard() {
@@ -57,27 +69,30 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
                 });
     }
 
+    private void testFlowable1() {
+        Observable.create(new ObservableOnSubscribe<Object>() {
 
-    private void testFlowable() {
-//        Observable.create(new ObservableOnSubscribe<Object>() {
-//
-//            @Override
-//            public void subscribe(@NonNull ObservableEmitter<Object> e) throws Exception {
-//                while (true) {
-//                    e.onNext(1);
-//                }
-//            }
-//        })
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Consumer<Object>() {
-//
-//                    @Override
-//                    public void accept(@NonNull Object o) throws Exception {
-//                        Thread.sleep(2000);
-//                        System.out.println("被压接受: " + o);
-//                    }
-//                });
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<Object> e) throws Exception {
+                while (true) {
+                    e.onNext(1);
+                }
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Object>() {
+
+                    @Override
+                    public void accept(@NonNull Object o) throws Exception {
+                        Thread.sleep(2000);
+                        System.out.println("被压接受: " + o);
+                    }
+                });
+    }
+
+    private void testFlowable2() {
+
    /*应用场景多次提交数据 只响应一次*/
         Flowable<Integer> flowable = Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
@@ -92,6 +107,16 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
                 emitter.onComplete();
             }
         }, BackpressureStrategy.ERROR); //增加了一个参数
+//        BUFFER
+//
+//        所谓BUFFER就是把RxJava中默认的只能存128个事件的缓存池换成一个大的缓存池，支持存很多很多的数据。
+//        这样，消费者通过request()即使传入一个很大的数字，生产者也会生产事件，并将处理不了的事件缓存。
+//        但是这种方式任然比较消耗内存，除非是我们比较了解消费者的消费能力，能够把握具体情况，不会产生OOM。
+//        总之BUFFER要慎用。
+//        DROP
+//
+//        看名字就可以了解其作用：当消费者处理不了事件，就丢弃。
+//        消费者通过request()传入其需求n，然后生产者把n个事件传递给消费者供其消费。其他消费不掉的事件就丢掉
 
         Subscriber<Integer> subscriber = new Subscriber<Integer>() {
             @Override
@@ -128,6 +153,75 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
         flowable.subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
+    }
+
+
+    private void testFlowableError() {
+        Flowable.create(new FlowableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+                for (int i = 0; i < 129; i++) {
+                    Log.d("log", "emit " + i);
+                    emitter.onNext(i);
+                }
+            }
+        }, BackpressureStrategy.ERROR).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onSubscribe(Subscription s) {
+
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        Log.d("log", "onNext: " + integer);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        Log.w("log", "onError: ", t);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+    }
+    private void testFlowableError2() {
+//        可以看出，生产者一次性传入128个事件进入缓存池。点击“开始”按钮，消费了50个。然后第一次点击“消费”按钮，
+//        又消费了50个，第二次点击“消费”按钮，再次消费50个。然而此时原来的128个缓存只剩下28个了，所以先消费掉28个，
+//        然后剩下22个是后来传入的
+        Flowable.create(new FlowableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+                for (int i = 0; ; i++) {
+                    emitter.onNext(i);
+                }
+            }
+        }, BackpressureStrategy.DROP).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        mSubscription = s;
+                        s.request(50);
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        Log.d("log", "onNext: " + integer);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        Log.w("log", "onError: ", t);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
     }
 
 }

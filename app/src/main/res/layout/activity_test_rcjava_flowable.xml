@@ -10,4 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mykotlin.rxjava.TestRcjavaFlowableActivity">
 
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RxJava 背压测试页面 看输出日志" />
+
 </RelativeLayout>
