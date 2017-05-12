@@ -40,11 +40,11 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
         findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                testFlowable1();
+//                testFlowable2();
                 mSubscription.request(50);
             }
         });
-        testFlowableError();
+        testFlowableError2();
     }
 
     private void testTheard() {
@@ -130,7 +130,8 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
 //                虽然并不限制向request()方法中传入任意数字，但是如果消费者并没有这么多的消费能力，依旧会造成资源浪费，最后产生OOM。形象点就是不能打肿脸充胖子。
 //                而ERROR策略就避免了这种情况的出现(讲了这么多终于出现了)。
 //
-//                在异步调用时，RxJava中有个缓存池，用来缓存消费者处理不了暂时缓存下来的数据，缓存池的默认大小为128，即只能缓存128个事件。无论request()中传入的数字比128大或小，缓存池中在刚开始都会存入128个事件。当然如果本身并没有这么多事件需要发送，则不会存128个事件。
+//                在异步调用时，RxJava中有个缓存池，用来缓存消费者处理不了暂时缓存下来的数据，缓存池的默认大小为128，
+// 即只能缓存128个事件。无论request()中传入的数字比128大或小，缓存池中在刚开始都会存入128个事件。当然如果本身并没有这么多事件需要发送，则不会存128个事件。
 //                在ERROR策略下，如果缓存池溢出，就会立刻抛出MissingBackpressureException异常。
             }
 
@@ -160,7 +161,7 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
         Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
             public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
-                for (int i = 0; i < 129; i++) {
+                for (int i = 0; i < 126; i++) {
                     Log.d("log", "emit " + i);
                     emitter.onNext(i);
                 }
@@ -188,6 +189,7 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void testFlowableError2() {
 //        可以看出，生产者一次性传入128个事件进入缓存池。点击“开始”按钮，消费了50个。然后第一次点击“消费”按钮，
 //        又消费了50个，第二次点击“消费”按钮，再次消费50个。然而此时原来的128个缓存只剩下28个了，所以先消费掉28个，
@@ -199,7 +201,7 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
                     emitter.onNext(i);
                 }
             }
-        }, BackpressureStrategy.DROP).subscribeOn(Schedulers.io())
+        }, BackpressureStrategy.LATEST).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Integer>() {
                     @Override

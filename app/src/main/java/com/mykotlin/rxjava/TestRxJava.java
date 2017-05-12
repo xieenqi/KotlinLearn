@@ -32,11 +32,12 @@ public class TestRxJava {
 
     public static void main(String[] args) {
         instance = new TestRxJava();
-//        instance.testCreate();
+        instance.testCreate();
+        instance.testMapFlatmap();
 //        instance.testConsumer();
 
 //        instance.testThread();
-        instance.testFlowable();
+//        instance.testFlowable();
     }
 
     Disposable disposable;
@@ -52,7 +53,7 @@ public class TestRxJava {
 //                e.onNext("我来发射数据");
 //            }
 //        });
-        Observable<String> observable = Observable.just("just 创建", "1", "2");
+//        Observable<String> observable = Observable.just("just 创建", "1", "2");
         //Observer的创建： {观察者}
         Observer<Object> observer = new Observer<Object>() {
             //Disposable相当于RxJava1.x中的Subscription,用于解除订阅。
@@ -86,7 +87,7 @@ public class TestRxJava {
 //        testFromIterable().subscribe(observer);
 //        testDefer().subscribe(observer);
 //        testInterval().subscribe(observer);
-        testMapFlatmap().subscribe(observer);
+//        testMapFlatmap().subscribe(observer);
 
     }
 
@@ -113,9 +114,9 @@ public class TestRxJava {
     }
 
     private synchronized Observable testInterval() {
-        Observable<Long> observable = Observable.interval(2, TimeUnit.SECONDS);
-//        上述表示发射1到20的数。即调用20次nNext()方法，依次传入1-20数字。
-//        Observable<Integer> observable = Observable.range(1, 20);
+//        Observable<Long> observable = Observable.interval(2, TimeUnit.SECONDS);
+//        表示发射1到20的数。即调用20次nNext()方法，依次传入1-20数字。
+        Observable<Integer> observable = Observable.range(1, 20);
         //它在一个给定的延迟后发射一个特殊的值，即表示延迟2秒后，调用onNext()方法。
 //        Observable<Long> observable = Observable.timer(2, TimeUnit.SECONDS);
         return observable;
@@ -133,32 +134,32 @@ public class TestRxJava {
         });
     }
 
-//    private void test(){
-//        Observable<Long> observable = Observable.interval(2, TimeUnit.SECONDS);
-//        Observer<Long> observer = new Observer<Long>() {
-//            @Override
-//            public void onSubscribe(Disposable d) {
-//
-//            }
-//
-//            @Override
-//            public void onNext(Long aLong) {
-//                System.out.println(aLong);
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//
-//            }
-//
-//            @Override
-//            public void onComplete() {
-//
-//            }
-//        };
-////        SystemClock.sleep(10000);//睡眠10秒后，才进行订阅  仍然从0开始，表示Observable内部逻辑刚开始执行
-//        observable.subscribe(observer);
-//    }
+    private void test() {
+        Observable<Long> observable = Observable.interval(2, TimeUnit.SECONDS);
+        Observer<Long> observer = new Observer<Long>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Long aLong) {
+                System.out.println(aLong);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+//        SystemClock.sleep(10000);//睡眠10秒后，才进行订阅  仍然从0开始，表示Observable内部逻辑刚开始执行
+        observable.subscribe(observer);
+    }
 
 
     private Observable testMapFlatmap() {
@@ -180,27 +181,27 @@ public class TestRxJava {
             }
         });
 
-//        Observable.just(list).flatMap(new Function<List<String>, ObservableSource<?>>() {
-//            @Override
-//            public ObservableSource<?> apply(List<String> strings) throws Exception {
-//                return Observable.fromIterable(strings);
-//            }
-//        }).filter(new Predicate<Object>() {
-//            @Override
-//            public boolean test(Object s) throws Exception {
-//                //设置 过滤条件
-//                String newStr = (String) s;
-//                if (newStr.length() > 6) {
-//                    return true;
-//                }
-//                return false;
-//            }
-//        }).subscribe(new Consumer<Object>() {
-//            @Override
-//            public void accept(Object o) throws Exception {
-//                System.out.println((String) o);
-//            }
-//        });
+        Observable.just(list).flatMap(new Function<List<String>, ObservableSource<?>>() {
+            @Override
+            public ObservableSource<?> apply(List<String> strings) throws Exception {
+                return Observable.fromIterable(strings);
+            }
+        }).filter(new Predicate<Object>() {
+            @Override
+            public boolean test(Object s) throws Exception {
+                //设置 过滤条件
+                String newStr = (String) s;
+                if (newStr.length() > 6) {
+                    return true;
+                }
+                return false;
+            }
+        }).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                System.out.println((String) o);
+            }
+        });
 
         Observable.just(list).flatMap(new Function<List<String>, ObservableSource<?>>() {
             @Override
@@ -208,7 +209,7 @@ public class TestRxJava {
                 return Observable.fromIterable(strings);
             }
             //最多输出多少个
-        }).take(6).doOnNext(new Consumer<Object>() {
+        }).take(13).doOnNext(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Exception {
                 System.out.println("doOnNext()允许我们在每次输出一个元素之前做一些额外的事情。");
