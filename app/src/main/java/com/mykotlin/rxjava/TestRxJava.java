@@ -29,11 +29,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TestRxJava {
     static TestRxJava instance;
+    private int drffer;
 
     public static void main(String[] args) {
         instance = new TestRxJava();
         instance.testCreate();
-        instance.testMapFlatmap();
+//        instance.testMapFlatmap();
 //        instance.testConsumer();
 
 //        instance.testThread();
@@ -85,7 +86,7 @@ public class TestRxJava {
         //被观察者  订阅 观察者
 //        observable.subscribe(observer);
 //        testFromIterable().subscribe(observer);
-//        testDefer().subscribe(observer);
+        testDefer().subscribe(observer);
 //        testInterval().subscribe(observer);
 //        testMapFlatmap().subscribe(observer);
 
@@ -101,13 +102,12 @@ public class TestRxJava {
         return observable;
     }
 
-    /*当满足回调条件后，就会进行相应的回调。*/
+    /*当满足回调条件后，就会进行相应的回调。 订阅的时候才调用call回调*/
     private Observable testDefer() {
-
         Observable<String> observable = Observable.defer(new Callable<ObservableSource<? extends String>>() {
             @Override
             public ObservableSource<? extends String> call() throws Exception {
-                return Observable.just("11");
+                return Observable.just("" + drffer);
             }
         });
         return observable;

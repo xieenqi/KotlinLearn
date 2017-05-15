@@ -10,6 +10,10 @@ import com.mykotlin.R;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
@@ -17,8 +21,11 @@ import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -41,10 +48,14 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                testFlowable2();
-                mSubscription.request(50);
+//                mSubscription.request(50);
+
+                testRxJavaDeferAction();
             }
         });
-        testFlowableError2();
+//        testFlowableError2();
+
+        testRxJavaDefer();
     }
 
     private void testTheard() {
@@ -226,4 +237,63 @@ public class TestRcjavaFlowableActivity extends AppCompatActivity {
                 });
     }
 
+    Observable<String> observable;
+    Observer<Object> observer;
+
+    private void testRxJavaDefer() {
+        observable = Observable.defer(new Callable<ObservableSource<? extends String>>() {
+            @Override
+            public ObservableSource<? extends String> call() throws Exception {
+//                for (int i = 0; i < 100; i++) {
+//                    Log.d("log", "处理的数据  -> " + i);
+//                    return Observable.just("玄幻: " + i);
+//                }
+
+                return testFromIterable();
+            }
+        });
+//        testFromIterable();
+        observer = new Observer<Object>() {
+            //Disposable相当于RxJava1.x中的Subscription,用于解除订阅。
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d("log", "是否 切断 被观察者和观察者的链接   -> " + d.isDisposed());
+//                注意：当切断被观察者与观察者之间的联系，Observable(被观察者)的事件却仍在继续执行。
+            }
+
+            @Override
+            //观察者接收到通知,进行相关操作
+            public void onNext(Object aLong) {
+                Log.d("log", "我接收到数据了  -> " + aLong);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d("log", "我接收到 错误信息  -> " + e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d("log", "我接收到  -> " + "onComplete");
+            }
+        };
+
+    }
+
+    private void testRxJavaDeferAction() {
+        Log.d("log", "订阅事件: " + System.currentTimeMillis());
+        observable.subscribe(observer);
+    }
+
+    /*遍历 数组*/
+    private Observable testFromIterable() {
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i < 10; i++) {
+
+            list.add("Hello" + i);
+        }
+        observable = Observable.fromIterable((Iterable<String>) list);
+        Log.d("log", "执行事件: " + System.currentTimeMillis());
+        return observable;
+    }
 }
