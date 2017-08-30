@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa">
+
+
+    <ImageView
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:background="@android:color/holo_blue_light" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@mipmap/login_img_logo" />
+
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/head"
+        android:layout_marginTop="-60dp"
+        android:background="@mipmap/item_bj"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:drawablePadding="11dp"
+            android:hint="请输入手机号"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginTop="12dp"
+            android:background="#f4f4f4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawablePadding="11dp"
+                android:hint="请输入您的手机验证码"
+                android:inputType="phone"
+                android:text=""
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/sendMSG"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="12dp"
+            android:background="#f4f4f4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:checked="true"
+                android:padding="5dp"
+                android:text="已阅读并同意" />
+
+            <TextView
+                android:id="@+id/userAgreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="《用户协议》" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="登录" />
+    </LinearLayout>
+</RelativeLayout>

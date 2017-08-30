@@ -23,4 +23,5 @@ class CollapsedTextViewActivity : AppCompatActivity() {
         text4.setText(tt)
         text5.setText(tt)
     }
+
 }

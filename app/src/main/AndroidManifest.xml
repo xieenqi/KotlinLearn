@@ -50,7 +50,8 @@
         <activity android:name=".CollapsedTextViewActivity" />
         <activity android:name=".ClearEditTextActivity" />
         <activity android:name=".ChartActivity" />
-        <activity android:name=".rxjava.TestRcjavaFlowableActivity"></activity>
+        <activity android:name=".rxjava.TestRcjavaFlowableActivity" />
+        <activity android:name=".InputShowHideActivity"></activity>
     </application>
 
 </manifest>
