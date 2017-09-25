@@ -43,7 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
-    private Button bt03, bt04, bt05, bt06, bt07, bt08, bt09;
+    private Button bt03, bt04, bt05, bt06, bt07, bt08, bt09, bt10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +116,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bt08.setOnClickListener(this);
         bt09 = (Button) findViewById(R.id.bt09);
         bt09.setOnClickListener(this);
+        bt10 = (Button) findViewById(R.id.bt10);
+        bt10.setOnClickListener(this);
     }
 
 
@@ -213,7 +215,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.bt09:
                 startActivity(new Intent(MainActivity.this, InputShowHideActivity.class));
                 break;
-
+            case R.id.bt10:
+                startActivity(new Intent(MainActivity.this, WebLineActivity.class));
+                break;
         }
     }
 }

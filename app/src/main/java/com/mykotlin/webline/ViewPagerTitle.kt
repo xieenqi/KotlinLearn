@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,7 @@ import java.util.jar.Attributes
  */
 
 class ViewPagerTitle : LinearLayout {
-    private var titles: Array<out String>? = null
+    private var titles: List<String>? = null
     private var viewPager: ViewPager? = null
     private var dynamicLine: DynamicLine? = null
     private val textViews = ArrayList<TextView>()
@@ -36,19 +37,18 @@ class ViewPagerTitle : LinearLayout {
         init()
     }
 
-    fun init() {
+    private fun init() {
         orientation = VERTICAL
     }
 
     //    如果java 中的 value 参数有数组类型，则在 kotlin 中变成 vararg 参数:
-    fun initData(vararg titles: String, viewPager: ViewPager, defluatIndex: Int) {
+    fun initData(titles: List<String>, viewPager: ViewPager, defluatIndex: Int) {
         this.titles = titles
         this.viewPager = viewPager
         createDynamicLine()
-        createTextViews(*titles)
+        createTextViews(titles)
         setCurrentItem(defluatIndex)
-        onPageChangeListener = MyOnPageChangeListener()
-        //TODO 没有完成要调整
+        onPageChangeListener = MyOnPageChangeListener(context, viewPager, dynamicLine!!, this)
         viewPager.addOnPageChangeListener(onPageChangeListener)
     }
 
@@ -58,7 +58,7 @@ class ViewPagerTitle : LinearLayout {
         dynamicLine!!.layoutParams = params
     }
 
-    private fun createTextViews(vararg titils: String) {
+    private fun createTextViews(titils: List<String>) {
         var textViewLl = LinearLayout(context)
         var linearLayoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         textViewLl.layoutParams = linearLayoutParams
@@ -76,7 +76,7 @@ class ViewPagerTitle : LinearLayout {
                 for (index in textViews.indices) {
                     if (index == v.tag) {
                         (v as TextView).setTextColor(Color.BLACK)
-                        (v as TextView).textSize = 22f
+                        (v as TextView).textSize = 20f
                     } else {
                         textViews!![index].setTextColor(Color.GRAY)
                         textViews!![index].textSize = 18f
@@ -98,12 +98,13 @@ class ViewPagerTitle : LinearLayout {
     fun setCurrentItem(itemIndex: Int) {
         for (item in textViews.indices) {
             if (itemIndex == item) {
-                textViews!![itemIndex].setTextColor(Color.BLACK)
-                textViews!![itemIndex].setTextSize(22f)
+                textViews!![item].setTextColor(Color.BLACK)
+                textViews!![item].setTextSize(20f)
             } else {
-                textViews!![itemIndex].setTextColor(Color.GRAY)
-                textViews!![itemIndex].setTextSize(18f)
+                textViews!![item].setTextColor(Color.GRAY)
+                textViews!![item].setTextSize(18f)
             }
+            Log.d("log", item.toString() + "====滑动的item--" + itemIndex)
         }
     }
 
@@ -119,5 +120,9 @@ class ViewPagerTitle : LinearLayout {
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         viewPager!!.removeOnPageChangeListener(onPageChangeListener)
+    }
+
+    fun getTextView(): ArrayList<TextView> {
+        return textViews
     }
 }

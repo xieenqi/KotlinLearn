@@ -51,7 +51,8 @@
         <activity android:name=".ClearEditTextActivity" />
         <activity android:name=".ChartActivity" />
         <activity android:name=".rxjava.TestRcjavaFlowableActivity" />
-        <activity android:name=".InputShowHideActivity"></activity>
+        <activity android:name=".InputShowHideActivity" />
+        <activity android:name=".WebLineActivity"></activity>
     </application>
 
 </manifest>

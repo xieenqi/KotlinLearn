@@ -27,15 +27,15 @@ class DynamicLine : View {
     private var defaultScrooll: Boolean = false
 
     constructor(context: Context) : super(context, null) {
-
+        init()
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs, 0) {
-
+        init()
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-
+        init()
     }
 
     private fun init() {
