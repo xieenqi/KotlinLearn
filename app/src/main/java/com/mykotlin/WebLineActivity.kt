@@ -12,7 +12,6 @@ import java.util.*
 class WebLineActivity : AppCompatActivity() {
 
     private var viewsData: ArrayList<View>? = null
-    var default = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -35,63 +35,79 @@
         app:wlv_waveAmplitude="20"
         app:wlv_waveColor="@color/colorPrimaryDark" />
 
-    <Button
-        android:id="@+id/bt01"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="开始写入" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/bt02"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="提取写入的数据" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bt03"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="弹性动画" />
+            <Button
+                android:id="@+id/bt01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="开始写入" />
 
-    <Button
-        android:id="@+id/bt04"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="scrollView滑动冲突" />
+            <Button
+                android:id="@+id/bt02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="提取写入的数据" />
 
-    <Button
-        android:id="@+id/bt05"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="折叠的textview" />
+            <Button
+                android:id="@+id/bt03"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="弹性动画" />
 
-    <Button
-        android:id="@+id/bt06"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="带一键删除的EditText" />
+            <Button
+                android:id="@+id/bt04"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="scrollView滑动冲突" />
 
-    <Button
-        android:id="@+id/bt07"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="图标统计控件 折线图" />
+            <Button
+                android:id="@+id/bt05"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="折叠的textview" />
 
-    <Button
-        android:id="@+id/bt08"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="RxJava背压测试" />
+            <Button
+                android:id="@+id/bt06"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="带一键删除的EditText" />
 
-    <Button
-        android:id="@+id/bt09"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="软键盘的 弹出出于隐藏" />
+            <Button
+                android:id="@+id/bt07"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="图标统计控件 折线图" />
 
-    <Button
-        android:id="@+id/bt10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="weblineTitle" />
+            <Button
+                android:id="@+id/bt08"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RxJava背压测试" />
+
+            <Button
+                android:id="@+id/bt09"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="软键盘的 弹出与隐藏" />
+
+            <Button
+                android:id="@+id/bt10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="weblineTitle" />
+            <Button
+                android:id="@+id/bt11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="router 路由框架" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
