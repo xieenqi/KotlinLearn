@@ -16,6 +16,7 @@ import com.library.quickkv.database.KeyValueDatabase;
 import com.mykotlin.ben.KotlinTest2;
 import com.mykotlin.conflict.ScrollViewSildingConflictActivity;
 import com.mykotlin.rxjava.TestRcjavaFlowableActivity;
+//import com.router.RouterActivity;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -43,7 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
-    private Button bt03, bt04, bt05, bt06, bt07, bt08, bt09, bt10;
+    private Button bt03, bt04, bt05, bt06, bt07, bt08, bt09, bt10, bt11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +119,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bt09.setOnClickListener(this);
         bt10 = (Button) findViewById(R.id.bt10);
         bt10.setOnClickListener(this);
+        bt11 = (Button) findViewById(R.id.bt11);
+        bt11.setOnClickListener(this);
     }
 
 
@@ -217,6 +220,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.bt10:
                 startActivity(new Intent(MainActivity.this, WebLineActivity.class));
+                break;
+            case R.id.bt11:
+//                startActivity(new Intent(MainActivity.this, RouterActivity.class));
                 break;
         }
     }
