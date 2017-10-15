@@ -16,7 +16,7 @@ import com.library.quickkv.database.KeyValueDatabase;
 import com.mykotlin.ben.KotlinTest2;
 import com.mykotlin.conflict.ScrollViewSildingConflictActivity;
 import com.mykotlin.rxjava.TestRcjavaFlowableActivity;
-//import com.router.RouterActivity;
+import com.router.RouterActivity;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -222,7 +222,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(MainActivity.this, WebLineActivity.class));
                 break;
             case R.id.bt11:
-//                startActivity(new Intent(MainActivity.this, RouterActivity.class));
+                startActivity(new Intent(MainActivity.this, RouterActivity.class));
                 break;
         }
     }
