@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.router.RouterActivity">
 
     <TextView
@@ -11,4 +12,10 @@
         android:layout_height="40dp"
         android:gravity="center"
         android:text="router框架演示页面" />
+
+    <Button
+        android:id="@+id/bit1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转到同module页面" />
 </LinearLayout>
