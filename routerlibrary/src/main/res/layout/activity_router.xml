@@ -17,5 +17,5 @@
         android:id="@+id/bit1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="跳转到同module页面" />
+        android:text="跳转到同module  kotlin页面" />
 </LinearLayout>

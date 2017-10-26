@@ -1,15 +1,18 @@
 package com.mykotlin;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.library.quickkv.QuickKV;
 import com.library.quickkv.database.KeyValueDatabase;
@@ -58,6 +61,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //                TestAiYi.getData();
 //            }
 //        });
+//        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//        String tel = tm.getLine1Number();//手机号码
+//        Log.d("tag", "当前手机号码：--- " + tel);
         ((TextView) findViewById(R.id.sendKotlin)).setText("" + new KotlinTest2().tt);
         final Button bt1 = (Button) findViewById(R.id.bt01);
         Button bt2 = (Button) findViewById(R.id.bt02);
@@ -222,7 +228,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(MainActivity.this, WebLineActivity.class));
                 break;
             case R.id.bt11:
-                startActivity(new Intent(MainActivity.this, RouterActivity.class));
+
+//                startActivity(new Intent(MainActivity.this, RouterActivity.class));
+                ARouter.getInstance().build("/router/kotlin").navigation();
                 break;
         }
     }

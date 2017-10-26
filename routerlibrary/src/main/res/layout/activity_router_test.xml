@@ -11,4 +11,11 @@
         android:layout_height="40dp"
         android:gravity="center"
         android:text="router框架演示页面--测试跳转router" />
+
+
+    <Button
+        android:id="@+id/bit1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转到同module  java页面" />
 </android.support.constraint.ConstraintLayout>

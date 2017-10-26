@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.chenenyu.router'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android['compileSdkVersion']
@@ -12,6 +12,18 @@ android {
         versionCode rootProject.ext.android['versionCode']
         versionName rootProject.ext.android['versionName']
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //Java router支持
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+        //kotlin router支持
+        kapt {
+            arguments {
+                arg("moduleName", project.getName())
+            }
+        }
     }
     buildTypes {
         release {
@@ -32,6 +44,11 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    //Java router支持
+    compile 'com.alibaba:arouter-api:1.2.4'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    //kotlin router支持
+    kapt 'com.alibaba:arouter-compiler:1.0.3'
 }
 repositories {
     mavenCentral()

@@ -2,7 +2,7 @@ package com.mykotlin;
 
 import android.app.Application;
 
-import com.chenenyu.router.Router;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
@@ -20,13 +20,11 @@ public class App extends Application {
         new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
-
-        // 初始化
-        Router.initialize(this);
-        // 开启log
         if (BuildConfig.DEBUG) {
-            Router.setDebuggable(true);
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();
         }
+        ARouter.init(this);
 
     }
 }
