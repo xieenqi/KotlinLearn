@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.mykotlin.ben.KotlinTest2;
 import com.mykotlin.conflict.ScrollViewSildingConflictActivity;
 import com.mykotlin.rxjava.TestRcjavaFlowableActivity;
 import com.router.RouterActivity;
+import com.router.RouterTestActivity;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -230,7 +232,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.bt11:
 
 //                startActivity(new Intent(MainActivity.this, RouterActivity.class));
-                ARouter.getInstance().build("/router/kotlin").navigation();
+                Uri testUriMix = Uri.parse("arouter://m.aliyun.com/router/kotlin");
+                ARouter.getInstance()
+                        .build("/router/kotlin")
+                        .withString("parma", "---传递的参数值---")
+                        .navigation();
                 break;
         }
     }

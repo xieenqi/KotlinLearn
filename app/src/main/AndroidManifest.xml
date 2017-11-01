@@ -52,7 +52,11 @@
         <activity android:name=".ChartActivity" />
         <activity android:name=".rxjava.TestRcjavaFlowableActivity" />
         <activity android:name=".InputShowHideActivity" />
-        <activity android:name=".WebLineActivity"></activity>
+        <!--创建多进程  android:process=":ppp2"-->
+        <activity
+            android:name=".WebLineActivity"
+            android:process=":weblin"></activity>
+
     </application>
 
 </manifest>

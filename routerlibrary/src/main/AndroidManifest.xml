@@ -7,8 +7,12 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
-        <activity android:name=".RouterActivity" />
-        <activity android:name=".RouterTestActivity" />
+        <activity
+            android:name=".RouterActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".RouterTestActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".TestActivity" />
 
     </application>

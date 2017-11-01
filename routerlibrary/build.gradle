@@ -48,7 +48,7 @@ dependencies {
     compile 'com.alibaba:arouter-api:1.2.4'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     //kotlin router支持
-    kapt 'com.alibaba:arouter-compiler:1.0.3'
+    kapt 'com.alibaba:arouter-compiler:1.1.4'
 }
 repositories {
     mavenCentral()
