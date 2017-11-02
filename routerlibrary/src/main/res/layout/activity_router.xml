@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center"
+
         android:text="router框架演示页面" />
 
     <ScrollView
@@ -26,19 +27,19 @@
                 android:id="@+id/bit1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" kotlin/*简单的应用内跳转*/" />
+                android:text="kotlin/*简单的应用内跳转*/" />
 
             <Button
                 android:id="@+id/bit2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" kotlin/*跳转到Kotlin页面 带参数*/" />
+                android:text="kotlin/*跳转到Kotlin页面 带参数*/" />
 
             <Button
                 android:id="@+id/bit3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" kotlin/*跳转ForResult 接收返回值*/" />
+                android:text="kotlin/*跳转ForResult 接收返回值*/" />
 
             <Button
                 android:id="@+id/bit4"
@@ -50,19 +51,20 @@
                 android:id="@+id/bit5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="跳转到同module  kotlin页面" />
+                android:text="kotlin/*旧版本转场动画*/" />
 
             <Button
                 android:id="@+id/bit6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="跳转到同module  kotlin页面" />
+                android:text="kotlin/*新版本转场动画*/"
+                android:transitionName="@string/image" />
 
             <Button
                 android:id="@+id/bit7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="跳转到同module  kotlin页面" />
+                android:text="kotlin/*拦截器测试*/" />
 
             <Button
                 android:id="@+id/bit8"

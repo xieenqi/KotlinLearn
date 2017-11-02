@@ -42,12 +42,12 @@ dependencies {
 //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
     //Java router支持
-    compile 'com.alibaba:arouter-api:1.2.4'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     //kotlin router支持
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.alibaba:arouter-api:1.2.4'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     kapt 'com.alibaba:arouter-compiler:1.1.4'
 }
 repositories {

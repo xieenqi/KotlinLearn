@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 
-/** 测试 不支持kotlin fragment实例
+/** 测试 kotlin 中参数必须加     @JvmField
  * Created by qiqi on 17/11/1.
  */
 @Route(path = "/test/kotlin/fragment")

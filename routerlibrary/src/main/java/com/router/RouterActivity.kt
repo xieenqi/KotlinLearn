@@ -1,8 +1,13 @@
 package com.router
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.util.Log
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.Postcard
@@ -10,7 +15,10 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.facade.callback.NavCallback
 import com.alibaba.android.arouter.launcher.ARouter
+import com.router.R.drawable.*
 import kotlinx.android.synthetic.main.activity_router.*
+import android.graphics.Bitmap
+
 
 //https://github.com/alibaba/ARouter  阿里巴巴开源
 
@@ -24,7 +32,7 @@ class RouterActivity : AppCompatActivity() {
     var parma1 = ""
     @Autowired
     @JvmField
-    var parma2 = 0
+    public var context: Activity = this
 
     val EXIT_CODE = 10086
 
@@ -56,13 +64,45 @@ class RouterActivity : AppCompatActivity() {
             var fragment = (ARouter.getInstance().build("/test/fragment").navigation()) as BlankFragment
             Toast.makeText(this, "找到Fragment--:" + fragment.name, Toast.LENGTH_SHORT).show()
         }
+/*旧版本转场动画*/
+        bit5.setOnClickListener {
+            ARouter.getInstance()
+                    .build("/test/kotlin")
+                    .withTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom)
+                    .navigation(this)
+        }
+/*新版本转场动画*/
+        bit6.setOnClickListener { v ->
+            //http://blog.csdn.net/qibin0506/article/details/48129139
+            //第1个参数是scale哪个view的大小，第2和3个参数是以view为基点，从哪开始动画，这里是该view的中心，4和5参数是新的activity从多大开始放大，这里是从无到有的过程。
+            var option1 = ActivityOptionsCompat.makeScaleUpAnimation(v, v.width / 3, v.height / 3, 0, 0)
+            //这里是通过放大一个图片，最后过度到一个新的activity
+            var option2 = ActivityOptionsCompat.makeThumbnailScaleUpAnimation(v, BitmapFactory.decodeResource(resources, test), 0, 0)
+            var option3 = ActivityOptionsCompat.makeSceneTransitionAnimation(this, v, getString(R.string.image))
+            ARouter.getInstance()
+                    .build("/test/kotlin")
+                    .withOptionsCompat(option3)
+                    .navigation(this)
+        }
 
+        bit7.setOnClickListener {
+            ARouter.getInstance()
+                    .build("/test/interceptor")
+                    .navigation()
+            Toast.makeText(this, "请查看日志", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             EXIT_CODE -> Toast.makeText(application, "返回值返回成功", Toast.LENGTH_LONG)
+        }
+    }
+
+    companion object {
+        fun getActivity() {
+
         }
     }
 }
