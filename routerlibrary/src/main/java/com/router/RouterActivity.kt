@@ -18,6 +18,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.router.R.drawable.*
 import kotlinx.android.synthetic.main.activity_router.*
 import android.graphics.Bitmap
+import com.router.server.HelloService
+import com.router.server.SingleService
 
 
 //https://github.com/alibaba/ARouter  阿里巴巴开源
@@ -84,13 +86,28 @@ class RouterActivity : AppCompatActivity() {
                     .withOptionsCompat(option3)
                     .navigation(this)
         }
-
+/*拦截器测试*/
         bit7.setOnClickListener {
             ARouter.getInstance()
                     .build("/test/interceptor")
                     .navigation()
             Toast.makeText(this, "请查看日志", Toast.LENGTH_SHORT).show()
         }
+/*依赖注入(参照代码)*/
+        bit8.setOnClickListener {
+            //传递各种参数
+            ARouter.getInstance()
+                    .build("/test/kotlin")
+                    .withParcelable("pac", TestParcelable())
+                    .navigation()
+        }
+/*ByName调用服务 */
+        bit9.setOnClickListener { (ARouter.getInstance().build("/service/hello").navigation() as HelloService).sayHello("mike 调用服务") }
+/*ByType调用服务*/
+        bit10.setOnClickListener { ARouter.getInstance().navigation(HelloService::class.java).sayHello("mike --- ByType调用服务") }
+/*ARouter 调用单类*/
+        bit11.setOnClickListener { ARouter.getInstance().navigation<SingleService>(SingleService::class.java).sayHello("Mike--调用单类") }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

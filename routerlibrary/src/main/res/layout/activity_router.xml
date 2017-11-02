@@ -70,25 +70,25 @@
                 android:id="@+id/bit8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="跳转到同module  kotlin页面" />
+                android:text="kotlin/*依赖注入(参照代码)*/" />
 
             <Button
                 android:id="@+id/bit9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="跳转到同module  kotlin页面" />
+                android:text="kotlin/*ByName调用服务*/" />
 
             <Button
                 android:id="@+id/bit10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="跳转到同module  kotlin页面" />
+                android:text="kotlin/*ByType调用服务*/" />
 
             <Button
                 android:id="@+id/bit11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="跳转到同module  kotlin页面" />
+                android:text="kotlin/*ARouter 调用单类*/" />
 
             <Button
                 android:id="@+id/bit12"

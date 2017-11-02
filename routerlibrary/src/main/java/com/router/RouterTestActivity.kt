@@ -21,8 +21,10 @@ class RouterTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_router_test)
         bit1.setOnClickListener { ARouter.getInstance().build("/test/java").navigation() }
-//        ARouter.getInstance().inject(this)
+        ARouter.getInstance().inject(this)
         t1.text = textInfo
+
+
         var intent = Intent()
         intent.putExtra("12", "23")
         setResult(55, intent)
