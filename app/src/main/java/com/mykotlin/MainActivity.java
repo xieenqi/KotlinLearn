@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
-    private Button bt03, bt04, bt05, bt06, bt07, bt08, bt09, bt10, bt11;
+    private Button bt03, bt04, bt05, bt06, bt07, bt08, bt09, bt10, bt11, bt12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +129,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bt10.setOnClickListener(this);
         bt11 = (Button) findViewById(R.id.bt11);
         bt11.setOnClickListener(this);
+        bt12 = (Button) findViewById(R.id.bt12);
+        bt12.setOnClickListener(this);
     }
 
 
@@ -230,13 +232,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(MainActivity.this, WebLineActivity.class));
                 break;
             case R.id.bt11:
-
 //                startActivity(new Intent(MainActivity.this, RouterActivity.class));
                 Uri testUriMix = Uri.parse("arouter://m.aliyun.com/router/kotlin");
                 ARouter.getInstance()
                         .build("/router/kotlin")
                         .withString("parma", "---传递的参数值---")
                         .navigation();
+                break;
+            case R.id.bt12:
+//                startActivity(new Intent(MainActivity.this, WebLineActivity.class));
                 break;
         }
     }

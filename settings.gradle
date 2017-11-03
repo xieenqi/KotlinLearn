@@ -1,1 +1,3 @@
-include ':app', ':library', ':routerlibrary'
+include ':app', ':library', ':routerlibrary', ':ipcdemo', ':ipcclient'
+//':ipcdemo', ':ipcclient'  AIDL演示module
+

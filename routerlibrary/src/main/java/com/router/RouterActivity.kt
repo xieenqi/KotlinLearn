@@ -1,23 +1,17 @@
 package com.router
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
-import android.util.Log
 import android.widget.Toast
-import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.facade.callback.NavCallback
 import com.alibaba.android.arouter.launcher.ARouter
 import com.router.R.drawable.*
 import kotlinx.android.synthetic.main.activity_router.*
-import android.graphics.Bitmap
 import com.router.server.HelloService
 import com.router.server.SingleService
 

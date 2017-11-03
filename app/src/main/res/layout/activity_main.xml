@@ -108,6 +108,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="router 路由框架" />
+            <Button
+                android:id="@+id/bt12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="跨进程通信 AIDL" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -90,17 +90,17 @@
                 android:layout_height="wrap_content"
                 android:text="kotlin/*ARouter 调用单类*/" />
 
-            <Button
-                android:id="@+id/bit12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="跳转到同module  kotlin页面" />
+            <!--<Button-->
+                <!--android:id="@+id/bit12"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="跳转到同module  kotlin页面" />-->
 
-            <Button
-                android:id="@+id/bit13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="跳转到同module  kotlin页面" />
+            <!--<Button-->
+                <!--android:id="@+id/bit13"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="跳转到同module  kotlin页面" />-->
         </LinearLayout>
     </ScrollView>
 
