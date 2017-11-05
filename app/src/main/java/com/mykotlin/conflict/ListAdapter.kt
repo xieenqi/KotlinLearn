@@ -36,7 +36,8 @@ class ListAdapter(mContext: Context, private var data: List<String>) : BaseAdapt
         if (vv == null) {
             vv = inlafter.inflate(R.layout.pager_item, null)
         }
-        var text1 = vv!!.findViewById(R.id.content) as TextView
+        /*新版 没有足够的信息来推断 findViewById 的返回类型。*/
+        var text1 = vv!!.findViewById<TextView>(R.id.content)
         text1.text = data!![p0]
         return vv
     }

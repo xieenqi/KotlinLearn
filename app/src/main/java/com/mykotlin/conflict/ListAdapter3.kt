@@ -39,8 +39,10 @@ class ListAdapter3(mContext: Context, private val data: List<String>?) : BaseAda
         if (vv == null) {
             vv = inflater.inflate(R.layout.pager_item, null)
         }
-        /* as 类型转换  as? 安全转换 转换不成功返回null   不会抛出异常 */
-        val textt = vv!!.findViewById(R.id.content) as TextView
+        /* as 类型转换  as? 安全转换 转换不成功返回null   不会抛出异常
+        * 新版 没有足够的信息来推断 findViewById 的返回类型。
+        * */
+        val textt: TextView = vv!!.findViewById(R.id.content)
         textt.text = data!![i]
         return vv
     }
