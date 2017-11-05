@@ -32,7 +32,7 @@ public class AidlService extends Service {
 
         @Override
         public void login(String username, String password) throws RemoteException {
-            Log.d(TAG, "=====:login" + username + "==" + password);
+            Log.d(TAG, "=====:login " + username + "==" + password);
         }
     }
 }
