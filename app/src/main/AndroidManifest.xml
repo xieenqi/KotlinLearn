@@ -55,7 +55,7 @@
         <!--创建多进程  android:process=":ppp2"-->
         <activity
             android:name=".WebLineActivity"
-            android:process=":weblin"></activity>
+            ></activity>
 
     </application>
 

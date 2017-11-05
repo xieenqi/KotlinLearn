@@ -1,10 +1,13 @@
-package com.ipcdemo;
+package com.ipcdemo.server;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.ipcdemo.IMyAidlInterface;
 
 /**
  * Created by qiqi on 17/11/3.
@@ -12,7 +15,7 @@ import android.util.Log;
 
 public class AidlService extends Service {
 
-    private static final String TAG = "AIDL";
+    private static final String TAG = "log";
 
     public AidlService() {
 
@@ -33,6 +36,7 @@ public class AidlService extends Service {
         @Override
         public void login(String username, String password) throws RemoteException {
             Log.d(TAG, "=====:login " + username + "==" + password);
+            Toast.makeText(AidlService.this, "夸进程通讯成功--AIDL", Toast.LENGTH_SHORT).show();
         }
     }
 }

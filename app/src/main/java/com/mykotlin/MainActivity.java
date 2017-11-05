@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.ipcdemo.*;
 import com.library.quickkv.QuickKV;
 import com.library.quickkv.database.KeyValueDatabase;
 import com.mykotlin.ben.KotlinTest2;
@@ -240,7 +241,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         .navigation();
                 break;
             case R.id.bt12:
-//                startActivity(new Intent(MainActivity.this, WebLineActivity.class));
+                startActivity(new Intent(MainActivity.this, AIDLActivity2.class));
                 break;
         }
     }
