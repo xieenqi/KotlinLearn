@@ -2,6 +2,7 @@ package com.ipcdemo.server;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -16,9 +17,10 @@ import com.ipcdemo.IMyAidlInterface;
 public class AidlService extends Service {
 
     private static final String TAG = "log";
+    Handler handler;
 
     public AidlService() {
-
+        handler = new Handler();
     }
 
     @Override
@@ -35,8 +37,14 @@ public class AidlService extends Service {
 
         @Override
         public void login(String username, String password) throws RemoteException {
-            Log.d(TAG, "=====:login " + username + "==" + password);
-            Toast.makeText(AidlService.this, "夸进程通讯成功--AIDL", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "==11===:loginAA " + username + "==" + password);
+//handler 要在主线程new 对象
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(), "夸进程通讯成功--AIDL", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

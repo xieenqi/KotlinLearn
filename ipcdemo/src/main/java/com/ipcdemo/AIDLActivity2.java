@@ -29,7 +29,7 @@ public class AIDLActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aidl);
-//        aidl = (TextView) findViewById(R.id.aidl);
+        aidl = (TextView) findViewById(R.id.aidl);
 //        aidl.setOnClickListener(this);
         callBack = new ConnectCallBack();
         Intent intent = new Intent(this, AidlService.class);
