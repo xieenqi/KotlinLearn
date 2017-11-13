@@ -113,6 +113,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="跨进程通信 AIDL" />
+            <Button
+                android:id="@+id/bt13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ObjectBox 数据库是使用" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

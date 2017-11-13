@@ -2,14 +2,20 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.kotlin_version = '1.1.51'
+    //objectbox 版本
+    ext.objectboxVersion = '1.2.1'
     repositories {
         jcenter()
 //        maven { url "https://jitpack.io" }//kv 数据库依赖
+        google()
+        //objectbox maven仓库
+        maven { url "http://objectbox.net/beta-repo/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
+        //objectbox 插件
+        classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -19,6 +25,9 @@ allprojects {
     repositories {
         jcenter()
         maven { url 'https://jitpack.io' }
+        google()
+        //objectbox maven仓库
+        maven { url "http://objectbox.net/beta-repo/" }
     }
 }
 
