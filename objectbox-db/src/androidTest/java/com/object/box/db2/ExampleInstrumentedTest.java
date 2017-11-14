@@ -1,4 +1,4 @@
-package com.object.box.db;
+package com.object.box.db2;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
