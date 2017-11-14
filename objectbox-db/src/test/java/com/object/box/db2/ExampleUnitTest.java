@@ -1,4 +1,4 @@
-package com.object.box.db;
+package com.object.box.db2;
 
 import org.junit.Test;
 
