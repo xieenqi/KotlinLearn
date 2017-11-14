@@ -1,4 +1,4 @@
-package com.object.box.db2;
+package com.object.box.db;
 
 /**
  * Created by qiqi on 17/11/14.
