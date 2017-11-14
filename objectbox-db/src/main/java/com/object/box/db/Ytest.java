@@ -6,4 +6,7 @@ package com.object.box.db;
 
 public class Ytest {
     //此master的内容修改------------
+    Ytest() {
+        new Weee();
+    }
 }
