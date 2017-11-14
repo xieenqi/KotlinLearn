@@ -1,5 +1,7 @@
 package com.object.box.db2;
 
+import com.object.box.db.Weee;
+
 /**
  * Created by qiqi on 17/11/14.
  */
