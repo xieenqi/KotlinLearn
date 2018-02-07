@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.dgg.wifitransfer.wifi.PopupMenuDialog;
+import com.dgg.wifitransfer.wifi.WebService;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.ipcdemo.*;
 import com.library.quickkv.QuickKV;
@@ -21,6 +23,7 @@ import com.library.quickkv.database.KeyValueDatabase;
 import com.mykotlin.ben.KotlinTest2;
 import com.mykotlin.conflict.ScrollViewSildingConflictActivity;
 import com.mykotlin.rxjava.TestRcjavaFlowableActivity;
+import com.object.box.db.ObjectBoxActivity;
 import com.router.RouterActivity;
 import com.router.RouterTestActivity;
 
@@ -29,6 +32,8 @@ import org.reactivestreams.Subscription;
 
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
@@ -50,12 +55,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private QuickKV quickKv;
     private int index = 100000;
     private long startTime1, endTime1, startTime2, endTime2;
-    private Button bt03, bt04, bt05, bt06, bt07, bt08, bt09, bt10, bt11, bt12;
+    private Button bt03, bt04, bt05, bt06, bt07, bt08, bt09, bt10, bt11, bt12, bt13;
+    @BindView(R.id.bt14)
+    Button bt14;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         quickKv = new QuickKV(MainActivity.this);
 //        findViewById(R.id.sendKotlin).setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -132,6 +140,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bt11.setOnClickListener(this);
         bt12 = (Button) findViewById(R.id.bt12);
         bt12.setOnClickListener(this);
+        bt13 = (Button) findViewById(R.id.bt13);
+        bt13.setOnClickListener(this);
+        bt14.setOnClickListener(this);
     }
 
 
@@ -242,6 +253,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.bt12:
                 startActivity(new Intent(MainActivity.this, AIDLActivity2.class));
+                break;
+            case R.id.bt13:
+                startActivity(new Intent(MainActivity.this, ObjectBoxActivity.class));
+                break;
+            case R.id.bt14:
+                WebService.start(this);
+                new PopupMenuDialog(this).builder().setCancelable(false).setCanceledOnTouchOutside(false).show();
                 break;
         }
     }

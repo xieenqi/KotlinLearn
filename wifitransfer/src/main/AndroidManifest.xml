@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dgg.wifitransfer">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application>
+        <service
+            android:name=".wifi.WebService"
+            android:enabled="true"
+            android:exported="true" />
+    </application>
+</manifest>

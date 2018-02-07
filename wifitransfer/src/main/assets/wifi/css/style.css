@@ -1,0 +1,163 @@
+html { margin: 0px; padding: 0px; overflow: visible; }
+#wrapper {  height: 768px; }
+#content { margin: 0px auto 0px auto; width:950px; height:768px; position: relative; }
+#left { margin: 0px 0px 0px 50px; }
+/*#logo { position: relative; height:417; }*/
+#logo .wifi { position:absolute;font-size:48px; line-height:48px; color:#ffffff; text-align:center; top:10px; }
+.hint { font-size: 12px; color: #FFF; width:243px; height:30px; text-align: center; line-height:15px; }
+#upload_form { position:absolute;left:50px;top:400px;  }
+#copyright { margin-top: 170px; font-size: 14px; color: #FFF; width:243px; text-align: center; }
+
+#drag_area { position:absolute;left:0;top:200px;width:180px; height:180px; margin-left:30px; background-image: url("../images/bg_drag.png"); background-repeat:no-repeat; }
+#drag_area.normal { background-position: 0px 0px; }
+#drag_area.active { background-position: 0px -181px; }
+
+
+#drag_area .drag_hint { font-size:20px; text-shadow:0px 4px 4px rgba(0,0,0,0.4); color:#ffffff; text-align: center; padding-top:130px; -moz-user-select: none;-khtml-user-select: none; user-select: none; }
+.button_lables { position: absolute; top:26px; left:0px; width:212px; height:92px; }
+.button_lables .button_lable1 {font-size:18px; line-height:18px; color:#ffffff; text-align:center; -moz-user-select: none;-khtml-user-select: none; user-select: none;}
+.button_lables .button_lable2 {font-size:12px; line-height:16px; color:#ffffff; text-align:center; -moz-user-select: none;-khtml-user-select: none; user-select: none;}
+.button_lable { position: absolute; width:210px; height:90px; font-size:20px; line-height:80px; color:#ffffff; text-align:center;}
+
+
+.file_upload {
+    width: 60px;
+    height:60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/*传输列表*/
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: white;
+}
+.column-name {
+    padding-left: 0 !important;
+}
+
+.column-name p {
+    font-size: 12px;
+    color: #666666;
+}
+.row-file {
+    height: 44px;
+}
+.column-size p {
+    font-size: 12px;
+    color: #999999;
+    text-align: right;
+}
+
+.content {
+    background-color: #f2f5f9;
+}
+
+.methodButton {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.column-icon {
+    width: 40px;
+    text-align: center;
+}
+
+.column-delete {
+    width: 40px;
+    text-align: center;
+}
+
+/*!*传输列表*!*/
+/*.size {*/
+    /*width: 100px;*/
+    /*text-align: right;*/
+/*}*/
+
+.download {
+    width: 26px;
+    height: 26px;
+    background-image: url('../images/icon_xiazai_1.png');
+    cursor: pointer;
+}
+
+.download:hover {
+    background-image: url('../images/icon_xiazai_2.png');
+}
+
+.trash {
+    width: 26px;
+    height: 26px;
+    background-image: url('../images/icon_shanchu_1.png');
+    cursor: pointer;
+}
+
+.trash:hover {
+    background-image: url('../images/icon_shanchu_2.png');
+}
+
+
+
+#upload_progress {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.upload_con {
+    margin: 20px 40px 0 40px;
+    background-color:#E6E6E6;
+    height: 9px;
+    border-radius: 4.5px;
+}
+
+.upload_con div {
+    background-color:#10CA70;
+    width: 0%;
+    height: 100%;
+    border-top-left-radius: 4.5px;border-bottom-left-radius: 4.5px;
+}
+
+.upload_con .complete {
+    border-radius: 4.5px;
+}
+
+
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.upload {
+    background: url("../images/icon_shangchuan_1.png") no-repeat center;
+    background-size: 60px 60px;
+}
+
+.upload:hover {
+    background: url("../images/icon_shangchuan_2.png") no-repeat center;
+    background-size: 60px 60px;
+}
+
+.reload {
+    background: url("../images/icon_shuaxin_1.png") no-repeat center;
+    background-size: 60px 60px;
+}
+
+.reload:hover {
+    background: url("../images/icon_shuaxin_2.png") no-repeat center;
+    background-size: 60px 60px;
+}

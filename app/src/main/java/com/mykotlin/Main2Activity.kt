@@ -41,7 +41,7 @@ class Main2Activity : AppCompatActivity() {
         return TestKotlin().info + "kotlin 方法值的传递!!!!" + KotlinTest2().tt;
     }
 
-    private val sendKotlin2: TextView by lazy { findViewById(R.id.sendKotlin2) as TextView }
+//    private val sendKotlin2: TextView by lazy { findViewById(R.id.sendKotlin2) as TextView }
 }
 
 
