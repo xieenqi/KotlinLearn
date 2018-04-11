@@ -11,14 +11,14 @@
     <RelativeLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="300dp"
         android:layout_marginTop="50dp"
         android:clipChildren="false">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="180dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:clipChildren="false" />
     </RelativeLayout>

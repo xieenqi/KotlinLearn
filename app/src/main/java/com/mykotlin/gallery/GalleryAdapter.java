@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.mykotlin.R;
+
 import java.util.List;
 
 /**
@@ -15,10 +17,9 @@ import java.util.List;
 public class GalleryAdapter extends PagerAdapter implements ViewPager.OnPageChangeListener {
 
     private List<View> mImageViewList;
-    public static int sWidthPadding = DimenUtils.dp2px(40);
+    public static int sWidthPadding = DimenUtils.dp2px(24);
 
-    public static int sHeightPadding = DimenUtils.dp2px(50);
-    private View img;
+    public static int sHeightPadding = DimenUtils.dp2px(32);
 
     public GalleryAdapter(List<View> mImageViewList) {
         this.mImageViewList = mImageViewList;
@@ -51,11 +52,20 @@ public class GalleryAdapter extends PagerAdapter implements ViewPager.OnPageChan
         if (mImageViewList.size() > 0 && position < mImageViewList.size()) {
             int outHeightPadding = (int) (positionOffset * sHeightPadding);
             int outWidthPadding = (int) (positionOffset * sWidthPadding);
-            mImageViewList.get(position).setPadding(outWidthPadding, outHeightPadding, outWidthPadding, outHeightPadding);
+            View itemView = mImageViewList.get(position);
+            ImageView img_bg = itemView.findViewById(R.id.img_bg);
+            ImageView img_fm = itemView.findViewById(R.id.img_fm);
+//            img_bg.setPadding(outWidthPadding, outHeightPadding, outWidthPadding, outHeightPadding);
+            img_fm.setPadding(outWidthPadding, outHeightPadding, outWidthPadding, outHeightPadding);
+
             if (position < mImageViewList.size() - 1) {
                 int inHeightPadding = (int) ((1 - positionOffset) * sHeightPadding);
                 int inWidthPadding = (int) ((1 - positionOffset) + sWidthPadding);
-                mImageViewList.get(position + 1).setPadding(inWidthPadding, inHeightPadding, inWidthPadding, inHeightPadding);
+                View itemView2 = mImageViewList.get(position + 1);
+                ImageView img_bg2 = itemView2.findViewById(R.id.img_bg);
+                ImageView img_fm2 = itemView2.findViewById(R.id.img_fm);
+//                img_bg2.setPadding(inWidthPadding, inHeightPadding, inWidthPadding, inHeightPadding);
+                img_fm2.setPadding(inWidthPadding, inHeightPadding, inWidthPadding, inHeightPadding);
             }
         }
     }
