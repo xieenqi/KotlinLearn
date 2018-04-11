@@ -127,6 +127,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="WiFi传输文件 及 Butterknife" />
+
+            <Button
+                android:id="@+id/bt15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="画廊的实现" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

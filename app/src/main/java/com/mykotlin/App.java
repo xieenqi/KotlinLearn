@@ -1,6 +1,7 @@
 package com.mykotlin;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.stetho.Stetho;
@@ -13,6 +14,9 @@ import okhttp3.OkHttpClient;
  */
 
 public class App extends Application {
+
+    private static Context sContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -25,6 +29,10 @@ public class App extends Application {
             ARouter.openDebug();
         }
         ARouter.init(this);
+        sContext = this;
+    }
 
+    public static Context getContext() {
+        return sContext;
     }
 }
