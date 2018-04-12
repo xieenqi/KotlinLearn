@@ -42,12 +42,34 @@ public class GalleryActivity extends AppCompatActivity {
 //            img.setImageDrawable(getResources().getDrawable(R.mipmap.zwy_edoc_fore));
 
             View galleryView = layoutInflater.inflate(R.layout.item_gallery, null, false);
-            galleryView.setBackgroundColor(Color.parseColor(getRandColorCode()));
+//            galleryView.setBackgroundColor(Color.parseColor(getRandColorCode()));
             mImageViewList.add(galleryView);
         }
         GalleryAdapter adapter = new GalleryAdapter(mImageViewList);
+//        viewPager.setPageTransformer(true, new ViewPager.PageTransformer() {
+//            @Override
+//            public void transformPage(View page, float position) {
+//                float scaleFactor = Math.max(0.85f, 1 - Math.abs(position));
+//                float rotate = 20 * Math.abs(position);
+//                if (position < -1) {
+//
+//                } else if (position < 0) {
+//                    page.setScaleX(scaleFactor);
+//                    page.setScaleY(scaleFactor);
+//                    page.setRotationY(rotate);
+//                } else if (position >= 0 && position < 1) {
+//                    page.setScaleX(scaleFactor);
+//                    page.setScaleY(scaleFactor);
+//                    page.setRotationY(-rotate);
+//                } else if (position >= 1) {
+//                    page.setScaleX(scaleFactor);
+//                    page.setScaleY(scaleFactor);
+//                    page.setRotationY(-rotate);
+//                }
+//            }
+//        });
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(5);
         viewPager.setOnPageChangeListener(adapter);
         root.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -55,6 +77,9 @@ public class GalleryActivity extends AppCompatActivity {
                 return viewPager.dispatchTouchEvent(motionEvent);
             }
         });
+//        for (int i = 0; i < 10; i++) {
+//            viewPager.setCurrentItem(i);
+//        }
     }
 
     /**

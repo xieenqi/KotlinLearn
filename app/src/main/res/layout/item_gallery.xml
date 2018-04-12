@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@mipmap/zwy_edoc_bg"
-        android:visibility="gone" />
+        android:src="@mipmap/zwy_edoc_bg" />
 
     <ImageView
         android:id="@+id/img_fm"

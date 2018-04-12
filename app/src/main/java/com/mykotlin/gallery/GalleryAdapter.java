@@ -2,10 +2,12 @@ package com.mykotlin.gallery;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.baidu.mapapi.common.Logger;
 import com.mykotlin.R;
 
 import java.util.List;
@@ -19,7 +21,8 @@ public class GalleryAdapter extends PagerAdapter implements ViewPager.OnPageChan
     private List<View> mImageViewList;
     public static int sWidthPadding = DimenUtils.dp2px(24);
 
-    public static int sHeightPadding = DimenUtils.dp2px(32);
+    public static int sHeightPadding = DimenUtils.dp2px(42);
+    public static int margenFM = DimenUtils.dp2px(25);
 
     public GalleryAdapter(List<View> mImageViewList) {
         this.mImageViewList = mImageViewList;
@@ -55,17 +58,33 @@ public class GalleryAdapter extends PagerAdapter implements ViewPager.OnPageChan
             View itemView = mImageViewList.get(position);
             ImageView img_bg = itemView.findViewById(R.id.img_bg);
             ImageView img_fm = itemView.findViewById(R.id.img_fm);
-//            img_bg.setPadding(outWidthPadding, outHeightPadding, outWidthPadding, outHeightPadding);
-            img_fm.setPadding(outWidthPadding, outHeightPadding, outWidthPadding, outHeightPadding);
-
+            if (outWidthPadding != 0 && outHeightPadding != 0) {
+                img_fm.setPadding(outWidthPadding, outHeightPadding, outWidthPadding, outHeightPadding);
+                img_bg.setPadding(outWidthPadding, (outHeightPadding + outHeightPadding * 3 / 5), outWidthPadding, (outHeightPadding + outHeightPadding * 2 / 5));
+//                Log.d("applog", outHeightPadding + " 滚动宽度：==== " + outWidthPadding);
+            }
+            if (position < mImageViewList.size() - 2) {
+                View itemView3 = mImageViewList.get(position + 2);
+                ImageView img_bg3 = itemView3.findViewById(R.id.img_bg);
+                ImageView img_fm3 = itemView3.findViewById(R.id.img_fm);
+                if (outWidthPadding != 0 && outHeightPadding != 0) {
+                    img_fm3.setPadding(outWidthPadding, outHeightPadding, outWidthPadding, outHeightPadding);
+                    img_bg3.setPadding(outWidthPadding, (outHeightPadding + outHeightPadding * 3 / 5), outWidthPadding, (outHeightPadding + outHeightPadding * 2 / 5));
+                }
+            }
+            Log.d("applog", "当前：" + position);
             if (position < mImageViewList.size() - 1) {
                 int inHeightPadding = (int) ((1 - positionOffset) * sHeightPadding);
                 int inWidthPadding = (int) ((1 - positionOffset) + sWidthPadding);
                 View itemView2 = mImageViewList.get(position + 1);
                 ImageView img_bg2 = itemView2.findViewById(R.id.img_bg);
                 ImageView img_fm2 = itemView2.findViewById(R.id.img_fm);
-//                img_bg2.setPadding(inWidthPadding, inHeightPadding, inWidthPadding, inHeightPadding);
-                img_fm2.setPadding(inWidthPadding, inHeightPadding, inWidthPadding, inHeightPadding);
+
+                if (inWidthPadding != 0 && inHeightPadding != 0) {
+                    img_fm2.setPadding(inWidthPadding, inHeightPadding, inWidthPadding, inHeightPadding);
+                    img_bg2.setPadding(inWidthPadding, (inHeightPadding + inHeightPadding * 3 / 5), inWidthPadding, (inHeightPadding + inHeightPadding * 3 / 5));
+                    Log.d("applog", inHeightPadding + " 滚动宽度：---- " + inWidthPadding);
+                }
             }
         }
     }
